@@ -18,6 +18,10 @@ if (isset($_POST['event'])) {
 		fputcsv($events_file, $line);
 	}
 	fclose($events_file);
+} else {
+	echo "no event sent";
+	echo $_SESSION['id'];
+	echo $_SESSION['current_video'];
 }
 
 ?>

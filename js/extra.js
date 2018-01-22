@@ -131,6 +131,11 @@ function initButtons() {
 		var state = player.getPlayerState();
 		if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.ENDED || state == YT.PlayerState.CUED) {
 			player.playVideo();
+			$.ajax({
+	            type: "POST",
+	            url: 'save.php',
+	            data: { event:'play video' }
+	        });
 		} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
 			player.pauseVideo();
 		}

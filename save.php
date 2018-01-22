@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 if (isset($_POST['event'])) {
 
 	$event_headers = array("user ID", "time", "video", "event", "video time", "new video time", "playback speed", "screen mode");

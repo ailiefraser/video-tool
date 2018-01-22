@@ -1,0 +1,37 @@
+body {
+    /*padding: 20px;*/
+}
+
+#video_controls {
+    position: relative;
+}
+
+#playback_dropdown {
+    display: inline;
+    margin-right: 4px;
+}
+
+#seek_bar {
+    display: block;
+    width: 640px;
+}
+
+#video_header, #video_container {
+    text-align: center;
+}
+
+#video_controls {
+    text-align: left;
+}
+
+#youtube_url {
+    width: 400px;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}

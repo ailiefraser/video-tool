@@ -16,7 +16,7 @@ if (isset($_POST['event'])) {
 
 	//var_dump($event_data);
 
-	$events_file = fopen("data/video_events.csv", "a");
+	$events_file = fopen("data/events.csv", "a");
 
 	if ($events_file) {
 		foreach ($event_data as $line) {

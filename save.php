@@ -14,8 +14,14 @@ if (isset($_GET['event'])) {
 
 	array_push($event_data, array($_SESSION['id'], date(), $_SESSION['current_video'], $_GET['event'], "", "", "", ""));
 
+	echo $event_data;
+
+
 	$events_file = fopen("data/video_events.csv", "a");
 
+	if ($events_file == false) {
+		echo "file did not open";
+	}
 	foreach ($event_data as $line) {
 		fputcsv($events_file, $line);
 	}

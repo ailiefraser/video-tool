@@ -2,8 +2,6 @@
 
 session_start();
 
-echo "hello";
-
 if (!isset($_SESSION['id'])) {
 	$_SESSION['id'] = uniqid();
 }

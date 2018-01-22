@@ -134,7 +134,13 @@ function initButtons() {
 			$.ajax({
 	            type: "POST",
 	            url: 'save.php',
-	            data: { event:'play video' }
+	            data: { event:'play video' },
+	            error: function(xhr, text, error) {
+	            	console.log("ERROR: " + text + " --- " + error);
+	            },
+	            success: function(data, text, xhr) {
+	            	console.log("SUCCESS: " + text);
+	            }
 	        });
 		} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
 			player.pauseVideo();

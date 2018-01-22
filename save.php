@@ -14,7 +14,7 @@ if (isset($_GET['event'])) {
 
 	array_push($event_data, array($_SESSION['id'], date(), $_SESSION['current_video'], $_GET['event'], "", "", "", ""));
 
-	echo $event_data;
+	var_dump($event_data);
 
 
 	$events_file = fopen("data/video_events.csv", "a");

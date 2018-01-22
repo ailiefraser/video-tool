@@ -21,6 +21,7 @@ if (isset($_GET['event'])) {
 
 	if ($events_file == false) {
 		echo "file did not open";
+		print_r(error_get_last());
 	}
 	foreach ($event_data as $line) {
 		fputcsv($events_file, $line);

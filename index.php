@@ -5,10 +5,8 @@ session_start();
 if (!isset($_SESSION['id'])) {
 	$_SESSION['id'] = uniqid();
 }
-echo $_SESSION['id'];
 
 $_SESSION['current_video'] = "XtlLI_pBC3s";
-echo $_SESSION['current_video'];
 
 ?>
 

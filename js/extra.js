@@ -15,6 +15,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var seeking = false;
 var duration = 0;
+var playback_speed;
 
 function makeTimeString(time) {
 	var hours = Math.floor(time / 3600);
@@ -42,7 +43,7 @@ function onPlayerReady(event) {
 	initButtons();
 	iframe = $('#player');
 	//event.target.playVideo();
-	var playback_speed = player.getPlaybackRate();
+	playback_speed = player.getPlaybackRate();
 	updatePlaybackSpeedDisplay(playback_speed);
 	duration = Math.floor(player.getDuration());
 	$("#total_time").html(makeTimeString(duration));
@@ -97,7 +98,6 @@ function updateSeekBar() {
 function updatePlaybackSpeedDisplay(speed) {
 	$("#playback_select a").each(function() {
 		if (Number($(this).attr("data-speed")) == speed) {
-			console.log("EQUAL TO " + speed);
 			$(this).css("font-weight", "bold");
 		} else {
 			$(this).css("font-weight", "normal");
@@ -120,6 +120,21 @@ function updateSizes() {
 	$("#video_controls").offset({"left": $("#player").offset().left});
 }
 
+function saveEvent(event) {
+	$.ajax({
+        type: "POST",
+        url: 'save.php',
+        data: { event: event, video_time: player.getCurrentTime(), playback_speed: playback_speed, 
+        	screen_mode: fullscreen ? "big" : "small" },
+        error: function(xhr, text, error) {
+        	console.log("ERROR: " + text + " --- " + error);
+        },
+        success: function(data, text, xhr) {
+        	console.log("SUCCESS: " + text);
+        }
+    });
+}
+
 
 
 function initButtons() {
@@ -131,17 +146,7 @@ function initButtons() {
 		var state = player.getPlayerState();
 		if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.ENDED || state == YT.PlayerState.CUED) {
 			player.playVideo();
-			$.ajax({
-	            type: "POST",
-	            url: 'save.php',
-	            data: { event:'play video' },
-	            error: function(xhr, text, error) {
-	            	console.log("ERROR: " + text + " --- " + error);
-	            },
-	            success: function(data, text, xhr) {
-	            	console.log("SUCCESS: " + text);
-	            }
-	        });
+			saveEvent('play video');
 		} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
 			player.pauseVideo();
 		}
@@ -163,6 +168,7 @@ function initButtons() {
 	$("#playback_select a").click(function() {
 		var new_speed = Number($(this).attr("data-speed"));
 		player.setPlaybackRate(new_speed);
+		playback_speed = new_speed;
 		updatePlaybackSpeedDisplay(new_speed);
 	});
 

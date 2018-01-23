@@ -219,6 +219,8 @@ function initButtons() {
 		var new_vol = $(this).val();
 		if (new_vol > 0) {
 			player.unMute();
+			$(this).children("span").removeClass("glyphicon-volume-off");
+			$(this).children("span").addClass("glyphicon-volume-up");
 		}
 		player.setVolume(new_vol);
 	});

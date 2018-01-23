@@ -39,4 +39,6 @@ body {
 
 #player_mask {
     position: absolute;
+    top: 0;
+    left: 0;
 }

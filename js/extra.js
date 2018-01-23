@@ -202,6 +202,7 @@ function initButtons() {
 			player.unMute();
 			$(this).children("span").removeClass("glyphicon-volume-off");
 			$(this).children("span").addClass("glyphicon-volume-up");
+			console.log(player.getVolume());
 			$("#volume_bar").val(player.getVolume());
 			saveEvent('unmute audio', player.getCurrentTime());
 		} else {
@@ -209,6 +210,7 @@ function initButtons() {
 			player.mute();
 			$(this).children("span").removeClass("glyphicon-volume-up");
 			$(this).children("span").addClass("glyphicon-volume-off");
+			console.log(player.getVolume());
 			$("#volume_bar").val(player.getVolume());
 			saveEvent('mute audio', player.getCurrentTime());
 		}

@@ -57,6 +57,7 @@ body {
 #volume_bar {
     width: 75px;
     display: inline;
+    vertical-align: middle;
 }
 
 #mute_button {

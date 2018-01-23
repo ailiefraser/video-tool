@@ -101,6 +101,9 @@ function updateSeekBar() {
 	}
 	// also update time
 	$("#current_time").html(makeTimeString(Math.floor(player.getCurrentTime())));
+	if ($("#current_time").html() == "") {
+		$("#current_time").html("0:00:00");
+	}
 }
 
 function updatePlaybackSpeedDisplay(speed) {
@@ -139,6 +142,7 @@ function updateSizes() {
 
 	$("#restart_button").height($("#playback_dropdown button").height());
 	$("#play_button").height($("#playback_dropdown button").height());
+	$("#mute_button").height($("#playback_dropdown button").height());
 	$("#size_button").height($("#playback_dropdown button").height());
 }
 

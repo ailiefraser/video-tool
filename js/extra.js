@@ -17,6 +17,7 @@ var seeking = false;
 var duration = 0;
 var playback_speed;
 var seek_start;
+var muted = false;
 var current_video = 'XtlLI_pBC3s';
 
 function makeTimeString(time) {
@@ -203,6 +204,7 @@ function initButtons() {
 			$(this).children("span").removeClass("glyphicon-volume-off");
 			$(this).children("span").addClass("glyphicon-volume-up");
 			$("#volume_bar").val(player.getVolume());
+			muted = false;
 			saveEvent('unmute audio', player.getCurrentTime());
 		} else {
 			// mute
@@ -210,6 +212,7 @@ function initButtons() {
 			$(this).children("span").removeClass("glyphicon-volume-up");
 			$(this).children("span").addClass("glyphicon-volume-off");
 			$("#volume_bar").val(0);
+			muted = true;
 			saveEvent('mute audio', player.getCurrentTime());
 		}
 		
@@ -217,13 +220,15 @@ function initButtons() {
 
 	$("#volume_bar").on("input change", function() {
 		var new_vol = $(this).val();
-		if (new_vol > 0 && player.isMuted()) {
+		if (new_vol > 0 && muted) {
 			player.unMute();
 			saveEvent('unmute audio', player.getCurrentTime());
+			muted = false;
 			$("#mute_button span").removeClass("glyphicon-volume-off");
 			$("#mute_button span").addClass("glyphicon-volume-up");
-		} else if (new_vol == 0) {
+		} else if (new_vol == 0 && !muted) {
 			saveEvent('mute audio', player.getCurrentTime());
+			muted = true;
 			$("#mute_button span").addClass("glyphicon-volume-off");
 			$("#mute_button span").removeClass("glyphicon-volume-up");
 		}

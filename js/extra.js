@@ -219,14 +219,6 @@ function initButtons() {
 		player.setVolume($(this).val());
 	});
 
-	$("#volume_bar").on("change", function() {
-		var position = $(this).val();
-		var seek_end = (player.getDuration() / 100) * position;
-		player.seekTo(seek_end);
-		seeking = false;
-		saveEvent("seek video", seek_start, seek_end);
-	});
-
 	// Initialize playback speed buttons
 	var speeds = player.getAvailablePlaybackRates();
 	$("#playback_select").html("");

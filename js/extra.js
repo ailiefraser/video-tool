@@ -105,6 +105,7 @@ function updatePlaybackSpeedDisplay(speed) {
 	});
 }
 
+// not currently used, doesn't work
 function playFullScreen() {
 	console.log(iframe);
 	var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen;
@@ -168,15 +169,12 @@ function initButtons() {
 	});
 
 	$("#playback_select a").click(function() {
+		var cur_time = player.getCurrentTime();
 		var new_speed = Number($(this).attr("data-speed"));
 		player.setPlaybackRate(new_speed);
 		playback_speed = new_speed;
 		updatePlaybackSpeedDisplay(new_speed);
-	});
-
-	// Initialize restart button
-	$("#fullscreen_button").click(function() {
-		playFullScreen();
+		saveEvent('change speed', cur_time);
 	});
 
 	// Initialize seek slider
@@ -205,6 +203,7 @@ function initButtons() {
 			$(this).children("span").removeClass("glyphicon-resize-small");
 			fullscreen = false;
 		}
+		saveEvent('change screen size', player.getCurrentTime());
 		player.setSize(new_width, new_width / aspect_ratio);
 		updateSizes();
 	});

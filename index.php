@@ -6,8 +6,6 @@ if (!isset($_SESSION['id'])) {
 	$_SESSION['id'] = uniqid();
 }
 
-$_SESSION['current_video'] = "XtlLI_pBC3s";
-
 ?>
 
 <html lang="en">

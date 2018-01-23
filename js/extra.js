@@ -16,6 +16,7 @@ var player;
 var seeking = false;
 var duration = 0;
 var playback_speed;
+var current_video = 'XtlLI_pBC3s';
 
 function makeTimeString(time) {
 	var hours = Math.floor(time / 3600);
@@ -29,7 +30,7 @@ function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		width: start_width,
 		height: start_width / aspect_ratio,
-		videoId: 'XtlLI_pBC3s',
+		videoId: current_video,
 		playerVars: { 'showinfo': 0, 'rel': 0, 'disablekb': 1 },// 'controls': 0 },
 		events: {
 			'onReady': onPlayerReady,
@@ -145,7 +146,7 @@ function saveEvent(event, video_time) {
         type: "POST",
         url: 'save.php',
         data: { event: event, video_time: video_time, playback_speed: playback_speed, 
-        	screen_mode: fullscreen ? "big" : "small" },
+        	screen_mode: fullscreen ? "big" : "small", current_video: current_video },
         error: function(xhr, text, error) {
         	console.log("ERROR: " + text + " --- " + error);
         },
@@ -238,9 +239,9 @@ function initButtons() {
 			$(this).html("Loading...");
 			var v_index = url.indexOf("youtube.com/watch?v=");
 			if (v_index != -1) {
-				var video_id = url.slice(v_index + "youtube.com/watch?v=".length).split("&")[0];
-				console.log(video_id);
-				player.cueVideoById(video_id);
+				current_video = url.slice(v_index + "youtube.com/watch?v=".length).split("&")[0];
+				console.log(current_video);
+				player.cueVideoById(current_video);
 				saveEvent('load video', "");
 			} else {
 				alert("Please paste in a properly formatted youtube URL, e.g. https://www.youtube.com/watch?v=SoBAQgl0zbo");

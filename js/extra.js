@@ -128,7 +128,8 @@ function updateSizes() {
 
 	$("#player_mask").width($("#player").width());
 	$("#player_mask").height($("#player").height());
-	$("#player_mask").offset($("#player").position());
+	$("#player_mask").css("top", $("#player").position().top);
+	$("#player_mask").css("left", $("#player").position().left);
 
 	$("#video_controls").offset(
 		{"left": $("#player").offset().left, 

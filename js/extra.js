@@ -202,15 +202,29 @@ function initButtons() {
 			player.unMute();
 			$(this).children("span").removeClass("glyphicon-volume-off");
 			$(this).children("span").addClass("glyphicon-volume-up");
+			$("#volume_bar").val(player.getVolume());
 			saveEvent('unmute audio', player.getCurrentTime());
 		} else {
 			// mute
 			player.mute();
 			$(this).children("span").removeClass("glyphicon-volume-up");
 			$(this).children("span").addClass("glyphicon-volume-off");
+			$("#volume_bar").val(player.getVolume());
 			saveEvent('mute audio', player.getCurrentTime());
 		}
 		
+	});
+
+	$("#volume_bar").on("input change", function() {
+		player.setVolume($(this).val());
+	});
+
+	$("#volume_bar").on("change", function() {
+		var position = $(this).val();
+		var seek_end = (player.getDuration() / 100) * position;
+		player.seekTo(seek_end);
+		seeking = false;
+		saveEvent("seek video", seek_start, seek_end);
 	});
 
 	// Initialize playback speed buttons

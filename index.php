@@ -4,6 +4,9 @@ session_start();
 
 if (!isset($_SESSION['id'])) {
 	$_SESSION['id'] = uniqid();
+	$new_user = true;
+} else {
+	$new_user = false;
 }
 
 ?>
@@ -71,5 +74,21 @@ if (!isset($_SESSION['id'])) {
 		  	</div>
 		</div>
 	</div>
+
+	<?php
+		if ($new_user) {
+			?>
+			<script type="text/javascript">
+				saveEvent('new user', "");
+			</script>
+			<?php
+		} else {
+			?>
+			<script type="text/javascript">
+				saveEvent('returning user', "");
+			</script>
+			<?php
+		}
+	?>
 </body>
 </html>

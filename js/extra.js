@@ -192,14 +192,14 @@ function initButtons() {
 		if (player.isMuted()) {
 			// unmute
 			player.unMute();
-			$(this).removeClass("glyphicon-volume-off");
-			$(this).addClass("glyphicon-volume-up");
+			$(this).children("span").removeClass("glyphicon-volume-off");
+			$(this).children("span").addClass("glyphicon-volume-up");
 			saveEvent('unmute audio', player.getCurrentTime());
 		} else {
 			// mute
 			player.mute();
-			$(this).removeClass("glyphicon-volume-up");
-			$(this).addClass("glyphicon-volume-off");
+			$(this).children("span").removeClass("glyphicon-volume-up");
+			$(this).children("span").addClass("glyphicon-volume-off");
 			saveEvent('mute audio', player.getCurrentTime());
 		}
 		

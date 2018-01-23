@@ -55,5 +55,10 @@ body {
 }
 
 #volume_bar {
-    width: 50px;
+    width: 75px;
+    display: inline;
+}
+
+#mute_button {
+    border: none !important;
 }

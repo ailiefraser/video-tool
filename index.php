@@ -57,13 +57,13 @@ if (!isset($_SESSION['id'])) {
 			    <button id="play_button" type="button" class="btn btn-default" aria-label="Left Align">
 					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
 				</button>
-				<button id="size_button" type="button" class="btn btn-default float-right" aria-label="Right Align">
-					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-				</button>
-				<button id="mute_button" type="button" class="btn btn-default float-right" aria-label="Right Align">
+				<button id="mute_button" type="button" class="btn btn-default" aria-label="Left Align">
 					<span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
 				</button>
 				<input type="range" id="volume_bar" value="100" readonly="">
+				<button id="size_button" type="button" class="btn btn-default float-right" aria-label="Right Align">
+					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+				</button>
 				<span id="current_time"></span> / <span id="total_time"></span>
 				<div id="playback_dropdown" class="dropdown float-right">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

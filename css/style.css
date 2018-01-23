@@ -48,7 +48,7 @@ body {
 #mask_text {
     color: red;
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);

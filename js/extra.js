@@ -157,6 +157,10 @@ function initButtons() {
 
 	updateSizes();
 
+	$( window ).resize(function() {
+		updateSizes();
+	});
+
 	// Initialize play/pause button
 	$("#play_button").click(function() {
 		var state = player.getPlayerState();

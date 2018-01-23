@@ -77,11 +77,7 @@ function onPlayerStateChange(event) {
 		$("#submit_url").attr("disabled", false);
 		$("#submit_url").html("Submit");
 	}
-	if (state == YT.PlayerState.PLAYING) {
-		saveEvent('play video', player.getCurrentTime());
-	} else if (state == YT.PlayerState.PAUSED) {
-		saveEvent('pause video', player.getCurrentTime());
-	} else if (state == YT.PlayerState.ENDED) {
+	if (state == YT.PlayerState.ENDED) {
 		saveEvent('video ended', player.getCurrentTime());
 	}
 

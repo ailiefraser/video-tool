@@ -18,6 +18,7 @@ body {
 
 #video_header, #video_container {
     text-align: center;
+    position: relative;
 }
 
 #video_controls {
@@ -34,4 +35,8 @@ body {
 
 .clear {
     clear: both;
+}
+
+#player_mask {
+    position: absolute;
 }

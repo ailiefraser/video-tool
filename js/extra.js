@@ -30,7 +30,7 @@ function onYouTubeIframeAPIReady() {
 		width: start_width,
 		height: start_width / aspect_ratio,
 		videoId: 'XtlLI_pBC3s',
-		playerVars: { 'showinfo': 0, 'rel': 0},// 'controls': 0 },
+		playerVars: { 'showinfo': 0, 'rel': 0, 'disablekb': 1 },// 'controls': 0 },
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
@@ -126,6 +126,10 @@ function updateSizes() {
 	$("#video_controls").width($("#player").width());
 	$("#seek_bar").width($("#player").width());
 	$("#video_controls").offset({"left": $("#player").offset().left});
+
+	$("#player_mask").width($("#player").width());
+	$("#player_mask").height($("#player").height());
+	$("#player_mask").offset($("#player").offset());
 }
 
 function saveEvent(event, video_time) {

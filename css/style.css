@@ -63,3 +63,7 @@ body {
 #mute_button {
     border: none !important;
 }
+
+button .glyphicon {
+    font-size: 1.2em;
+}

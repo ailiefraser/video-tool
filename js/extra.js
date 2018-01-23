@@ -40,7 +40,7 @@ function onYouTubeIframeAPIReady() {
 		width: start_width,
 		height: start_width / aspect_ratio,
 		videoId: current_video,
-		playerVars: { 'showinfo': 0, 'rel': 0, 'disablekb': 1, 'controls': 0 },
+		playerVars: { 'showinfo': 0, 'rel': 0, 'disablekb': 1, 'controls': 0, 'cc_load_policy': 1 },
 		events: {
 			'onReady': onPlayerReady,
 			'onStateChange': onPlayerStateChange
@@ -96,9 +96,6 @@ function onPlayerStateChange(event) {
 
 	// update seek bar
 	updateSeekBar();
-
-	player.loadModule("captions");
-	player.loadModule("cc");
 }
 
 function updateSeekBar() {

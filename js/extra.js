@@ -66,6 +66,7 @@ function onPlayerStateChange(event) {
 	} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
 		$("#play_button span").removeClass("glyphicon-play");
 		$("#play_button span").addClass("glyphicon-pause");
+		$("#mask_text").hide();
 		console.log("playing");
 
 		seek_updater = setInterval(updateSeekBar, 100);
@@ -79,6 +80,8 @@ function onPlayerStateChange(event) {
 	}
 	if (state == YT.PlayerState.ENDED) {
 		saveEvent('video ended', player.getCurrentTime());
+	} else if (state == YT.PlayerState.CUED) {
+		$("#mask_text").show();
 	}
 
 	// update seek bar

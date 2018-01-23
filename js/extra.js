@@ -202,6 +202,14 @@ function initButtons() {
 	});
 
 	// Initialize seek slider
+
+	$("#seek_bar").mousedown(function() {
+		seeking = true;
+		var position = $(this).val();
+		console.log("started at " + (player.getCurrentTime()));
+		console.log("started at " + (player.getDuration() / 100) * position);
+	});
+
 	$("#seek_bar").on("input change", function() {
 		seeking = true;
 		var position = $(this).val();

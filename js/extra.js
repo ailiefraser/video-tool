@@ -20,10 +20,17 @@ var seek_start;
 var current_video = 'XtlLI_pBC3s';
 
 function makeTimeString(time) {
-	var hours = Math.floor(time / 3600);
-	var remaining = time - (hours * 3600);
-	var minutes = Math.floor(remaining / 60);
-	var seconds = remaining - (minutes * 60);
+	if (time) {
+		var hours = Math.floor(time / 3600);
+		var remaining = time - (hours * 3600);
+		var minutes = Math.floor(remaining / 60);
+		var seconds = remaining - (minutes * 60);
+	} else {
+		var hours = 0;
+		var minutes = 0;
+		var seconds = 0;
+	}
+	
 	return hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
 
@@ -101,9 +108,6 @@ function updateSeekBar() {
 	}
 	// also update time
 	$("#current_time").html(makeTimeString(Math.floor(player.getCurrentTime())));
-	if ($("#current_time").html() == "") {
-		$("#current_time").html("0:00:00");
-	}
 }
 
 function updatePlaybackSpeedDisplay(speed) {

@@ -44,3 +44,9 @@ body {
     width: 640;
     height: 390;
 }
+
+#mask_text {
+    color: red;
+    text-align: center;
+    vertical-align: center;
+}

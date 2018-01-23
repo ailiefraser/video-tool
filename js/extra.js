@@ -56,7 +56,7 @@ function onPlayerReady(event) {
 	updatePlaybackSpeedDisplay(playback_speed);
 	duration = Math.floor(player.getDuration());
 	$("#total_time").html(makeTimeString(duration));
-
+	$("#current_time").html(makeTimeString(Math.floor(player.getCurrentTime())));
 }
 
 // 5. The API calls this function when the player's state changes.

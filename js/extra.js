@@ -16,6 +16,7 @@ var player;
 var seeking = false;
 var duration = 0;
 var playback_speed;
+var seek_start;
 var current_video = 'XtlLI_pBC3s';
 
 function makeTimeString(time) {
@@ -141,12 +142,13 @@ function updateSizes() {
 	$("#size_button").height($("#playback_dropdown button").height());
 }
 
-function saveEvent(event, video_time) {
+function saveEvent(event, video_time, new_video_time) {
 	$.ajax({
         type: "POST",
         url: 'save.php',
         data: { event: event, video_time: video_time, playback_speed: playback_speed, 
-        	screen_mode: fullscreen ? "big" : "small", current_video: current_video },
+        	screen_mode: fullscreen ? "big" : "small", current_video: current_video,
+        	new_video_time: event == "seek video" ? new_video_time : "" },
         error: function(xhr, text, error) {
         	console.log("ERROR: " + text + " --- " + error);
         },
@@ -204,10 +206,8 @@ function initButtons() {
 	// Initialize seek slider
 
 	$("#seek_bar").mousedown(function() {
+		seek_start = player.getCurrentTime();
 		seeking = true;
-		var position = $(this).val();
-		console.log("started at " + (player.getCurrentTime()));
-		console.log("started at " + (player.getDuration() / 100) * position);
 	});
 
 	$("#seek_bar").on("input change", function() {
@@ -220,6 +220,7 @@ function initButtons() {
 		var position = $(this).val();
 		player.seekTo((player.getDuration() / 100) * position);
 		seeking = false;
+		saveEvent("seek video", seek_start, seek_end);
 	});
 
 	// Initialize fullscreen button

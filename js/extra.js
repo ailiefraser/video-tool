@@ -128,12 +128,13 @@ function updateSizes() {
 
 	$("#player_mask").width($("#player").width());
 	$("#player_mask").height($("#player").height());
-	$("#player_mask").css("top", $("#player").position().top);
-	$("#player_mask").css("left", $("#player").position().left);
 
 	$("#video_controls").offset(
 		{"left": $("#player").offset().left, 
 		"top": $("#player").offset().top + $("#player").height() });
+
+	$("#player_mask").css("top", $("#player").position().top);
+	$("#player_mask").css("left", $("#player").position().left);
 }
 
 function saveEvent(event, video_time) {

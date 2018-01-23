@@ -218,7 +218,8 @@ function initButtons() {
 
 	$("#seek_bar").on("change", function() {
 		var position = $(this).val();
-		player.seekTo((player.getDuration() / 100) * position);
+		var seek_end = (player.getDuration() / 100) * position;
+		player.seekTo(seek_end);
 		seeking = false;
 		saveEvent("seek video", seek_start, seek_end);
 	});

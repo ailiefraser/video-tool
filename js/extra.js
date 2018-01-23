@@ -120,11 +120,11 @@ function updateSizes() {
 	$("#video_controls").offset({"left": $("#player").offset().left});
 }
 
-function saveEvent(event) {
+function saveEvent(event, video_time) {
 	$.ajax({
         type: "POST",
         url: 'save.php',
-        data: { event: event, video_time: player.getCurrentTime(), playback_speed: playback_speed, 
+        data: { event: event, video_time: video_time, playback_speed: playback_speed, 
         	screen_mode: fullscreen ? "big" : "small" },
         error: function(xhr, text, error) {
         	console.log("ERROR: " + text + " --- " + error);
@@ -145,15 +145,17 @@ function initButtons() {
 	$("#play_button").click(function() {
 		var state = player.getPlayerState();
 		if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.ENDED || state == YT.PlayerState.CUED) {
+			saveEvent('play video', player.getCurrentTime());
 			player.playVideo();
-			saveEvent('play video');
 		} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
+			saveEvent('pause video', player.getCurrentTime());
 			player.pauseVideo();
 		}
 	});
 
 	// Initialize restart button
 	$("#restart_button").click(function() {
+		saveEvent('restart video', player.getCurrentTime());
 		player.seekTo(0);
 		player.playVideo();
 	});

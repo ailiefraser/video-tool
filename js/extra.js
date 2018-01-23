@@ -125,13 +125,14 @@ function playFullScreen() {
 function updateSizes() {
 	$("#video_controls").width($("#player").width());
 	$("#seek_bar").width($("#player").width());
-	$("#video_controls").offset(
-		{"left": $("#player").offset().left, 
-		"top": $("#player").offset().top + $("#player").height() });
 
 	$("#player_mask").width($("#player").width());
 	$("#player_mask").height($("#player").height());
 	$("#player_mask").offset($("#player").position());
+
+	$("#video_controls").offset(
+		{"left": $("#player").offset().left, 
+		"top": $("#player").offset().top + $("#player").height() });
 }
 
 function saveEvent(event, video_time) {

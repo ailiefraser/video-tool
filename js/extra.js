@@ -216,7 +216,11 @@ function initButtons() {
 	});
 
 	$("#volume_bar").on("input change", function() {
-		player.setVolume($(this).val());
+		var new_vol = $(this).val();
+		if (new_vol > 0) {
+			player.unMute();
+		}
+		player.setVolume(new_vol);
 	});
 
 	// Initialize playback speed buttons

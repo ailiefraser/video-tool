@@ -129,7 +129,7 @@ function updateSizes() {
 
 	$("#player_mask").width($("#player").width());
 	$("#player_mask").height($("#player").height());
-	$("#player_mask").position($("#player").position());
+	$("#player_mask").offset($("#player").position());
 }
 
 function saveEvent(event, video_time) {

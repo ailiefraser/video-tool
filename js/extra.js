@@ -134,6 +134,10 @@ function updateSizes() {
 
 	$("#player_mask").css("top", $("#player").position().top);
 	$("#player_mask").css("left", $("#player").position().left);
+
+	$("#restart_button").height($("#playback_dropdown button").height());
+	$("#play_button").height($("#playback_dropdown button").height());
+	$("#size_button").height($("#playback_dropdown button").height());
 }
 
 function saveEvent(event, video_time) {
@@ -237,6 +241,7 @@ function initButtons() {
 				var video_id = url.slice(v_index + "youtube.com/watch?v=".length).split("&")[0];
 				console.log(video_id);
 				player.cueVideoById(video_id);
+				saveEvent('load video', "");
 			} else {
 				alert("Please paste in a properly formatted youtube URL, e.g. https://www.youtube.com/watch?v=SoBAQgl0zbo");
 			}

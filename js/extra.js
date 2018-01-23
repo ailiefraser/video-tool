@@ -187,6 +187,24 @@ function initButtons() {
 		player.playVideo();
 	});
 
+	// Initialize mute button
+	$("#mute_button").click(function() {
+		if (player.isMuted()) {
+			// unmute
+			player.unMute();
+			$(this).removeClass("glyphicon-volume-off");
+			$(this).addClass("glyphicon-volume-up");
+			saveEvent('unmute audio', player.getCurrentTime());
+		} else {
+			// mute
+			player.mute();
+			$(this).removeClass("glyphicon-volume-up");
+			$(this).addClass("glyphicon-volume-off");
+			saveEvent('mute audio', player.getCurrentTime());
+		}
+		
+	});
+
 	// Initialize playback speed buttons
 	var speeds = player.getAvailablePlaybackRates();
 	$("#playback_select").html("");

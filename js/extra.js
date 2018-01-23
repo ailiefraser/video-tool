@@ -217,10 +217,15 @@ function initButtons() {
 
 	$("#volume_bar").on("input change", function() {
 		var new_vol = $(this).val();
-		if (new_vol > 0) {
+		if (new_vol > 0 && player.isMuted()) {
 			player.unMute();
+			saveEvent('unmute audio', player.getCurrentTime());
 			$("#mute_button span").removeClass("glyphicon-volume-off");
 			$("#mute_button span").addClass("glyphicon-volume-up");
+		} else if (new_vol == 0 && !player.isMuted()) {
+			saveEvent('mute audio', player.getCurrentTime());
+			$("#mute_button span").addClass("glyphicon-volume-off");
+			$("#mute_button span").removeClass("glyphicon-volume-up");
 		}
 		player.setVolume(new_vol);
 	});

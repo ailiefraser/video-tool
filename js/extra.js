@@ -222,7 +222,7 @@ function initButtons() {
 			saveEvent('unmute audio', player.getCurrentTime());
 			$("#mute_button span").removeClass("glyphicon-volume-off");
 			$("#mute_button span").addClass("glyphicon-volume-up");
-		} else if (new_vol == 0 && !player.isMuted()) {
+		} else if (new_vol == 0) {
 			saveEvent('mute audio', player.getCurrentTime());
 			$("#mute_button span").addClass("glyphicon-volume-off");
 			$("#mute_button span").removeClass("glyphicon-volume-up");

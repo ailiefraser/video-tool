@@ -157,7 +157,7 @@ function saveEvent(event, video_time, new_video_time) {
         url: 'save.php',
         data: { event: event, video_time: video_time, playback_speed: playback_speed, 
         	screen_mode: fullscreen ? "big" : "small", current_video: current_video,
-        	new_video_time: event == "seek video" ? new_video_time : "" },
+        	new_video_time: (event == "seek video" || event == "restart video") ? new_video_time : "" },
         error: function(xhr, text, error) {
         	console.log("ERROR: " + text + " --- " + error);
         },
@@ -191,7 +191,7 @@ function initButtons() {
 
 	// Initialize restart button
 	$("#restart_button").click(function() {
-		saveEvent('restart video', player.getCurrentTime());
+		saveEvent('restart video', player.getCurrentTime(), 0);
 		player.seekTo(0);
 		player.playVideo();
 	});

@@ -38,7 +38,7 @@ if (file_exists("data/events.csv")) {
 				// it's this user
 				if (!$user_playing && in_array($event["event"], array("play video", "restart video"))) {
 					// if user was not playing and this is a play event
-					if (stcmp($event["event"], "play video") == 0) {
+					if (strcmp($event["event"], "play video") == 0) {
 						$start_time = $event["video time"];
 					} else {
 						$start_time = $event["new video time"];

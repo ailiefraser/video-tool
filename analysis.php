@@ -52,7 +52,7 @@ session_start();
 						
 						foreach ($events as $event) {
 							if (!in_array($event["video"], $videos)) {
-								array_push($videos, $event["video"])
+								array_push($videos, $event["video"]);
 							}
 						}
 

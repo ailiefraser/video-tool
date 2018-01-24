@@ -297,10 +297,10 @@ function initButtons() {
 			$(this).html("Loading...");
 			var v_index = url.indexOf("youtube.com/watch?v=");
 			if (v_index != -1) {
+				saveEvent('load video', player.getCurrentTime());
 				current_video = url.slice(v_index + "youtube.com/watch?v=".length).split("&")[0];
 				console.log(current_video);
 				player.cueVideoById(current_video);
-				saveEvent('load video', "");
 			} else {
 				alert("Please paste in a properly formatted youtube URL, e.g. https://www.youtube.com/watch?v=SoBAQgl0zbo");
 			}

@@ -36,7 +36,7 @@ if (file_exists("data/events.csv")) {
 		foreach ($events as $event) {
 			if (strcmp($event["user ID"], $user) == 0) {
 				// it's this user
-				if (!$user_playing && strcmp($event["event"], "play video") == 0) {
+				if (!$user_playing && in_array($event["event"], array("play video", "restart video"))) {
 					// if user was not playing and this is a play event
 					$start_time = $event["video time"];
 					$cur_video = $event["video"];

@@ -70,4 +70,5 @@ button .glyphicon {
 
 #total_container {
     display: flex;
+    text-align: center;
 }

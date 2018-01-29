@@ -93,9 +93,9 @@ if (file_exists("data/events.csv")) {
 <div class="device-lg visible-lg"></div>
 <body>
 	<div id="total_container">
+		<h3>Video analysis</h3>
 		<div id="left_container">
 			<div id="video_header">
-				<h3>Video analysis</h3>
 				<div>
 					<p>Select a video to view analytics for:</p>
 					<?php

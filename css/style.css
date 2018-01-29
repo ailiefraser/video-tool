@@ -67,3 +67,7 @@ body {
 button .glyphicon {
     font-size: 1.2em;
 }
+
+#total_container {
+    display: flex;
+}

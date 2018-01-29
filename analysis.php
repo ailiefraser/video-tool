@@ -92,55 +92,60 @@ if (file_exists("data/events.csv")) {
 <div class="device-md visible-md"></div>
 <div class="device-lg visible-lg"></div>
 <body>
-	<div id="body_container">
-		<div id="video_header">
-			<h3>Video analysis</h3>
-			<div>
-				<p>Select a video to view analytics for:</p>
-				<?php
-					// insert video options here
-					foreach ($videos as $video) {
-						?>
-						<button id=<?php echo $video ?> type="button" class="btn btn-default">
-							<?php echo $video ?>
+	<div id="total_container">
+		<div id="left_container">
+			<div id="video_header">
+				<h3>Video analysis</h3>
+				<div>
+					<p>Select a video to view analytics for:</p>
+					<?php
+						// insert video options here
+						foreach ($videos as $video) {
+							?>
+							<button id=<?php echo $video ?> type="button" class="btn btn-default">
+								<?php echo $video ?>
+							</button>
+							<?php
+						}
+						//var_dump($user_data);
+					?>
+				</div>
+			</div>
+			<div id="video_container">
+				<div id="player"></div>
+				<div id="player_mask">
+					<p id="mask_text">Click the play button below to play this video</p>
+				</div>
+				<div id="video_controls" class="controls">
+					<button id="restart_button" type="button" class="btn btn-default" aria-label="Left Align">
+						<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+					</button>
+				    <button id="play_button" type="button" class="btn btn-default" aria-label="Left Align">
+						<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+					</button>
+					<button id="mute_button" type="button" class="btn btn-default" aria-label="Left Align">
+						<span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+					</button>
+					<input type="range" id="volume_bar" value="100" readonly="">
+					<button id="size_button" type="button" class="btn btn-default float-right" aria-label="Right Align">
+						<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+					</button>
+					<span id="current_time"></span> / <span id="total_time"></span>
+					<div id="playback_dropdown" class="dropdown float-right">
+						<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Speed
+							<span class="caret"></span>
 						</button>
-						<?php
-					}
-					//var_dump($user_data);
-				?>
+						<ul id="playback_select" class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							<li><a data-speed="1" href="#">1</a></li>
+						</ul>
+					</div>
+				    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
+			  	</div>
 			</div>
 		</div>
-		<div id="video_container">
-			<div id="player"></div>
-			<div id="player_mask">
-				<p id="mask_text">Click the play button below to play this video</p>
-			</div>
-			<div id="video_controls" class="controls">
-				<button id="restart_button" type="button" class="btn btn-default" aria-label="Left Align">
-					<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-				</button>
-			    <button id="play_button" type="button" class="btn btn-default" aria-label="Left Align">
-					<span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-				</button>
-				<button id="mute_button" type="button" class="btn btn-default" aria-label="Left Align">
-					<span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
-				</button>
-				<input type="range" id="volume_bar" value="100" readonly="">
-				<button id="size_button" type="button" class="btn btn-default float-right" aria-label="Right Align">
-					<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-				</button>
-				<span id="current_time"></span> / <span id="total_time"></span>
-				<div id="playback_dropdown" class="dropdown float-right">
-					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					Speed
-						<span class="caret"></span>
-					</button>
-					<ul id="playback_select" class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a data-speed="1" href="#">1</a></li>
-					</ul>
-				</div>
-			    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
-		  	</div>
+		<div id="right_container">
+			<h4>Video stats:</h4>
 		</div>
 	</div>
 </body>

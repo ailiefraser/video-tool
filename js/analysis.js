@@ -152,19 +152,7 @@ function updateSizes() {
 }
 
 function saveEvent(event, video_time, new_video_time) {
-	$.ajax({
-        type: "POST",
-        url: 'save.php',
-        data: { event: event, video_time: video_time, playback_speed: playback_speed, 
-        	screen_mode: fullscreen ? "big" : "small", current_video: current_video,
-        	new_video_time: (event == "seek video" || event == "restart video") ? new_video_time : "" },
-        error: function(xhr, text, error) {
-        	console.log("ERROR: " + text + " --- " + error);
-        },
-        success: function(data, text, xhr) {
-        	console.log("SUCCESS: " + text);
-        }
-    });
+	// nope no saving this is analysis version
 }
 
 

@@ -106,7 +106,7 @@ if (file_exists("data/events.csv")) {
 						</button>
 						<?php
 					}
-					var_dump($user_data);
+					//var_dump($user_data);
 				?>
 			</div>
 		</div>

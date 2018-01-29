@@ -10,8 +10,6 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
 var player;
 var seeking = false;
 var duration = 0;
@@ -35,6 +33,8 @@ function makeTimeString(time) {
 	return hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
 
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
 		width: start_width,

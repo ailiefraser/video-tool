@@ -2,30 +2,6 @@
 
 session_start();
 
-if (file_exists("data/events.csv")) {
-	$events_file = fopen("data/events.csv", "r");
-	$events = array();
-	$events_header = null;
-	while ($row = fgetcsv($events_file)) {
-		if ($events_header === null) {
-	        $events_header = $row;
-	        continue;
-	    }
-	    $events[] = array_combine($events_header, $row);
-	}
-	fclose($events_file);
-
-	$videos = array();
-	
-	foreach ($events as $event) {
-		if (!in_array($event["video"], $videos)) {
-			array_push($videos, $event["video"]);
-		}
-	}
-} else {
-	$videos = array();
-}
-
 if (isset($_POST['video'])) {
 
 	$cur_video = $_POST['video'];
@@ -43,25 +19,29 @@ if (isset($_POST['video'])) {
 		}
 		fclose($events_file);
 
+		$videos = array();
 		$users = array();
 		
-		// get all events from this video, organized by user
 		foreach ($events as $event) {
-			if (strcmp($event["video"], $cur_video) == 0 && 
-					!in_array($event["user ID"], $users)) {
+			if (!in_array($event["user ID"], $users)) {
 
 				array_push($users, $event["user ID"]);
+			}
+
+			if (!in_array($event["video"], $videos)) {
+				array_push($videos, $event["video"]);
 			}
 		}
 
 		$user_data = array();
 
+		// get all events from this video, organized by user
 		foreach ($users as $user) {
 			$user_data[$user] = array();
 			$user_playing = false;
 			$start_time = 0;
 			foreach ($events as $event) {
-				if (strcmp($event["user ID"], $user) == 0) {
+				if (strcmp($event["video"], $cur_video) == 0 && strcmp($event["user ID"], $user) == 0) {
 					// it's this user
 					if (!$user_playing && in_array($event["event"], array("play video", "restart video"))) {
 						// if user was not playing and this is a play event
@@ -89,6 +69,30 @@ if (isset($_POST['video'])) {
 			}
 		}
 		var_dump($user_data);
+	}
+} else {
+	if (file_exists("data/events.csv")) {
+		$events_file = fopen("data/events.csv", "r");
+		$events = array();
+		$events_header = null;
+		while ($row = fgetcsv($events_file)) {
+			if ($events_header === null) {
+		        $events_header = $row;
+		        continue;
+		    }
+		    $events[] = array_combine($events_header, $row);
+		}
+		fclose($events_file);
+
+		$videos = array();
+		
+		foreach ($events as $event) {
+			if (!in_array($event["video"], $videos)) {
+				array_push($videos, $event["video"]);
+			}
+		}
+	} else {
+		$videos = array();
 	}
 }
 // "user ID",time,video,event,"video time","new video time","playback speed","screen mode"
@@ -175,6 +179,7 @@ if (isset($_POST['video'])) {
 		</div>
 		<div id="right_container">
 			<h4>Video stats:</h4>
+			Current video: <?php echo $cur_video ?>
 		</div>
 	</div>
 </body>

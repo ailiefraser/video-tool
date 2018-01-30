@@ -79,3 +79,7 @@ button .glyphicon {
 #video_choice_form {
     display: inline;
 }
+
+#right_container {
+    padding: 10px;
+}

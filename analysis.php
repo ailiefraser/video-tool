@@ -179,7 +179,11 @@ if (isset($_POST['video'])) {
 		</div>
 		<div id="right_container">
 			<h4>Video stats:</h4>
-			Current video: <?php echo $cur_video ?>
+			<?php if (isset($cur_video)) { ?>
+				<div>Current video: <span id="current_video"><?php echo $cur_video ?></span></div>
+			<?php } else { ?>
+				<div>Choose a video on the left to view stats.</div>
+			<?php } ?>
 		</div>
 	</div>
 </body>

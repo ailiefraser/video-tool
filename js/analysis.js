@@ -1,11 +1,10 @@
- // 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-
 var aspect_ratio = 640 / 390;
 var start_width = 640;
 var fullscreen = false;
 var seek_updater = undefined;
 
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -16,7 +15,7 @@ var duration = 0;
 var playback_speed;
 var seek_start;
 var muted = false;
-var current_video = 'XtlLI_pBC3s';
+var current_video = '';
 
 function makeTimeString(time) {
 	if (time) {
@@ -36,6 +35,12 @@ function makeTimeString(time) {
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 function onYouTubeIframeAPIReady() {
+	if (current_video != "") {
+		loadPlayer();
+	}
+}
+
+function loadPlayer() {
 	player = new YT.Player('player', {
 		width: start_width,
 		height: start_width / aspect_ratio,
@@ -294,5 +299,10 @@ function initButtons() {
 			}
 		}
 	});
+
+	if ($("#current_video").length) {
+		current_video = $("#current_video").html();
+		loadPlayer();
+	}
 
 }

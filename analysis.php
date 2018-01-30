@@ -106,7 +106,7 @@ $ytdata = json_decode($json);
 $i = 0;
 foreach ($videos as $video=>$video_info) {
 	$videos[$video]["title"] = $ytdata->items[$i]->snippet->title;
-	$videos[$video]["duration"] = $ytdata->items[$i]->fileDetails->durationMs / 1000.0;
+	$videos[$video]["duration"] = floatval($ytdata->items[$i]->fileDetails->durationMs) / 1000.0;
 	$i++;
 }
 var_dump($videos);

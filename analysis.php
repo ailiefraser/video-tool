@@ -205,7 +205,7 @@ var_dump($videos);
 				    			?>
 				    			<div class="heatmap_element" 
 				    				style="width: <?php echo $width ?>; left: <?php echo $start_location ?>;"></div>
-				    			<?php 
+				    			<?php var_dump($user_data);
 				    		}
 				    	} ?>
 				    </div>

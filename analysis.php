@@ -108,7 +108,8 @@ $i = 0;
 foreach ($videos as $video=>$video_info) {
 	$videos[$video]["title"] = $ytdata->items[$i]->snippet->title;
 	$duration_obj = new DateInterval($ytdata->items[$i]->contentDetails->duration);
-	var_dump($duration_obj); 
+	$duration = ($duration_obj=>h * 3600) + ($duration_obj=>i * 60) + $duration_obj=>s;
+	echo $duration . "<br/>";
 	echo gettype($ytdata->items[$i]->contentDetails->duration) . "<br/>";
 	$videos[$video]["duration"] = floatval($ytdata->items[$i]->contentDetails->duration) / 1000.0;
 	$i++;

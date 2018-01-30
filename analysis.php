@@ -108,10 +108,7 @@ $i = 0;
 foreach ($videos as $video=>$video_info) {
 	$videos[$video]["title"] = $ytdata->items[$i]->snippet->title;
 	$duration_obj = new DateInterval($ytdata->items[$i]->contentDetails->duration);
-	$duration = ($duration_obj->h * 3600) + ($duration_obj->i * 60) + $duration_obj->s;
-	echo $duration . "<br/>";
-	echo gettype($ytdata->items[$i]->contentDetails->duration) . "<br/>";
-	$videos[$video]["duration"] = floatval($ytdata->items[$i]->contentDetails->duration) / 1000.0;
+	$videos[$video]["duration"] = ($duration_obj->h * 3600) + ($duration_obj->i * 60) + $duration_obj->s;
 	$i++;
 }
 var_dump($videos);
@@ -201,10 +198,15 @@ var_dump($videos);
 				    <?php foreach ($user_data as $u=>$user_events) {
 				    		foreach ($user_events as $index=>$event_info) {
 				    			$start = floatval($event_info["start_time"]);
-				    			$duration = floatval($event_info["end_time"]) - $start;
+				    			$end = floatval($event_info["end_time"]);
+
+				    			$start_location = (100 / $videos[$cur_video]["duration"]) * $start;
+				    			$end_location = (100 / $videos[$cur_video]["duration"]) * $end;
+				    			$width = $end_location - $start_location;
 				    			?>
-				    			<div class="heatmap_element" style="width: 20"></div>
-				    			<?php var_dump($event_info);
+				    			<div class="heatmap_element" 
+				    				style="width: <?php echo $width ?>; left: <?php echo $start_location ?>;"></div>
+				    			<?php 
 				    		}
 				    	} ?>
 			  	</div>

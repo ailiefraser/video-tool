@@ -111,7 +111,7 @@ foreach ($videos as $video=>$video_info) {
 	$videos[$video]["duration"] = ($duration_obj->h * 3600) + ($duration_obj->i * 60) + $duration_obj->s;
 	$i++;
 }
-var_dump($videos);
+//var_dump($videos);
 
 
 // "user ID",time,video,event,"video time","new video time","playback speed","screen mode"
@@ -196,16 +196,16 @@ var_dump($videos);
 				    <div id="heatmap_container">
 				    	<?php foreach ($user_data as $u=>$user_events) {
 				    		foreach ($user_events as $index=>$event_info) {
-				    			$start = floatval($event_info["start_time"]);
-				    			$end = floatval($event_info["end_time"]);
+				    			$start = intval($event_info["start_time"]);
+				    			$end = intval($event_info["end_time"]);
 
-				    			$start_location = (100 / $videos[$cur_video]["duration"]) * $start;
-				    			$end_location = (100 / $videos[$cur_video]["duration"]) * $end;
+				    			$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
+				    			$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
 				    			$width = $end_location - $start_location;
 				    			?>
 				    			<div class="heatmap_element" 
 				    				style="width: <?php echo $width ?>; left: <?php echo $start_location ?>;"></div>
-				    			<?php var_dump($user_data);
+				    			<?php
 				    		}
 				    	} ?>
 				    </div>
@@ -223,7 +223,7 @@ var_dump($videos);
 					?>
 			<?php } else { ?>
 				<div>Choose a video on the left to view stats.</div>
-			<?php } ?>
+			<?php } var_dump($user_data); ?>
 		</div>
 	</div>
 </body>

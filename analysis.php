@@ -189,7 +189,15 @@ foreach ($videos as $video=>$video_info) {
 						</ul>
 					</div>
 				    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
-				    <div id="heatmap_container"></div>
+				    <div id="heatmap_container">
+				    </div>
+				    <?php foreach ($user_data as $user=>$user_events) {
+				    		foreach ($user_events as $index=>$event_info) {
+				    			?>
+				    			<div class="heatmap_element" style="width: 20"></div>
+				    			<?php vardump($event_info);
+				    		}
+				    	} ?>
 			  	</div>
 			</div>
 		</div>

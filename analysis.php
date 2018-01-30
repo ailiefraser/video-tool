@@ -37,7 +37,6 @@ if (isset($_POST['video'])) {
 
 		// get all events from this video, organized by user
 		foreach ($users as $user) {
-			$user_data[$user] = array();
 			$user_playing = false;
 			$start_time = 0;
 			foreach ($events as $event) {
@@ -55,6 +54,9 @@ if (isset($_POST['video'])) {
 					} else if ($user_playing && 
 						in_array($event["event"], array("load video", "pause video", "video ended", "restart video", "seek video"))) {
 						// if user was playing and this event stopped it
+						if (!isset($user_data[$user])) {
+							$user_data[$user] = array();
+						}
 						array_push($user_data[$user], 
 							array("start_time" => $start_time, "end_time" => $event["video time"], "video" => $cur_video));
 						if (in_array($event["event"], array("restart video", "seek video"))) {
@@ -68,7 +70,7 @@ if (isset($_POST['video'])) {
 				}
 			}
 		}
-		var_dump($user_data);
+		//var_dump($user_data);
 	}
 } else {
 	if (file_exists("data/events.csv")) {
@@ -180,7 +182,11 @@ if (isset($_POST['video'])) {
 		<div id="right_container">
 			<h4>Video stats:</h4>
 			<?php if (isset($cur_video)) { ?>
-				<div>Current video: <span id="current_video"><?php echo $cur_video ?></span></div>
+				<p>Current video: <span id="current_video"><?php echo $cur_video ?></span></p>
+				<p>Number of unique views: 
+					<?php 
+
+					?>
 			<?php } else { ?>
 				<div>Choose a video on the left to view stats.</div>
 			<?php } ?>

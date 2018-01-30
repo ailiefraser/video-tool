@@ -158,6 +158,11 @@ function updateSizes() {
 	$("#heatmap_container").offset(
 		{"left": $("#seek_bar").offset().left, 
 		"top": $("#seek_bar").offset().top});
+
+	$(".heatmap_element").each(function() {
+		$(this).width(($("#heatmap_container").width() / 100) * $(this).attr("data-width"));
+		$(this).offset({"left": ($("#heatmap_container").width() / 100) * $(this).attr("data-left")});
+	});
 }
 
 function saveEvent(event, video_time, new_video_time) {

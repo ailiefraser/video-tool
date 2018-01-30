@@ -204,7 +204,8 @@ foreach ($videos as $video=>$video_info) {
 				    			$width = $end_location - $start_location;
 				    			?>
 				    			<div class="heatmap_element" 
-				    				style="width: <?php echo $width ?>; left: <?php echo $start_location ?>;"></div>
+				    				data-width=<?php echo $width ?> data-left=<?php echo $start_location ?>>
+				    			</div>
 				    			<?php
 				    		}
 				    	} ?>

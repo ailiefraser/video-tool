@@ -70,7 +70,7 @@ if (isset($_POST['video'])) {
 				}
 			}
 		}
-		//var_dump($user_data);
+		var_dump($user_data);
 	}
 } else {
 	if (file_exists("data/events.csv")) {
@@ -185,7 +185,7 @@ if (isset($_POST['video'])) {
 				<p>Current video: <span id="current_video"><?php echo $cur_video ?></span></p>
 				<p>Number of unique views: 
 					<?php 
-
+						echo sizeof($user_data);
 					?>
 			<?php } else { ?>
 				<div>Choose a video on the left to view stats.</div>

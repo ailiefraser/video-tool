@@ -128,9 +128,12 @@ if (isset($_POST['video'])) {
 						// insert video options here
 						foreach ($videos as $video) {
 							?>
-							<button id=<?php echo $video ?> type="button" class="btn btn-default">
-								<?php echo $video ?>
-							</button>
+							<form action="analysis.php" method="post">
+								<button id=<?php echo $video ?> value=<?php echo $video ?> 
+									type="submit" name="video" class="btn btn-default">
+									<?php echo $video ?>
+								</button>
+							</form>
 							<?php
 						}
 						//var_dump($user_data);

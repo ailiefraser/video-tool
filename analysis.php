@@ -194,8 +194,7 @@ var_dump($videos);
 					</div>
 				    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
 				    <div id="heatmap_container">
-				    </div>
-				    <?php foreach ($user_data as $u=>$user_events) {
+				    	<?php foreach ($user_data as $u=>$user_events) {
 				    		foreach ($user_events as $index=>$event_info) {
 				    			$start = floatval($event_info["start_time"]);
 				    			$end = floatval($event_info["end_time"]);
@@ -209,6 +208,7 @@ var_dump($videos);
 				    			<?php 
 				    		}
 				    	} ?>
+				    </div>
 			  	</div>
 			</div>
 		</div>

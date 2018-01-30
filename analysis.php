@@ -98,10 +98,10 @@ if (isset($_POST['video'])) {
 		$videos = array();
 	}
 }
-echo implode(",", $videos);
+echo implode(",", array_keys($videos));
 
 $json = file_get_contents(
-	'https://www.googleapis.com/youtube/v3/videos?id='.implode(",", $videos).'&key='.$api_key.'&part=snippet');
+	'https://www.googleapis.com/youtube/v3/videos?id='.implode(",", array_keys($videos)).'&key='.$api_key.'&part=snippet');
 $ytdata = json_decode($json);
 var_dump($json);
 

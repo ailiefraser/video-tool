@@ -101,15 +101,15 @@ if (isset($_POST['video'])) {
 
 $json = file_get_contents(
 	'https://www.googleapis.com/youtube/v3/videos?id='.implode(",", array_keys($videos)).
-	'&key='.$api_key.'&part=snippet,fileDetails');
+	'&key='.$api_key.'&part=snippet,contentDetails');
 $ytdata = json_decode($json);
 
 $i = 0;
 foreach ($videos as $video=>$video_info) {
 	$videos[$video]["title"] = $ytdata->items[$i]->snippet->title;
-	echo $ytdata->items[$i]->fileDetails->durationMs . "<br/>";
-	echo gettype($ytdata->items[$i]->fileDetails->durationMs) . "<br/>";
-	$videos[$video]["duration"] = floatval($ytdata->items[$i]->fileDetails->durationMs) / 1000.0;
+	echo $ytdata->items[$i]->contentDetails->duration . "<br/>";
+	echo gettype($ytdata->items[$i]->contentDetails->duration) . "<br/>";
+	$videos[$video]["duration"] = floatval($ytdata->items[$i]->contentDetails->duration) / 1000.0;
 	$i++;
 }
 var_dump($videos);

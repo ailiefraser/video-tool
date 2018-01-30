@@ -107,7 +107,7 @@ var_dump($json);
 
 $i = 0;
 foreach ($videos as $video=>$video_info) {
-	$video_info["title"] = $ytdata->items[$i]->snippet->title;
+	$videos[$video]["title"] = $ytdata->items[$i]->snippet->title;
 	$i++;
 }
 

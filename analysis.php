@@ -4,7 +4,7 @@ session_start();
 
 $api_key = file_get_contents("api_key.txt");
 echo $api_key;
-echo "<br/>"
+echo "<br/>";
 
 if (isset($_POST['video'])) {
 

@@ -30,10 +30,7 @@ if (isset($_POST['video'])) {
 			}
 
 			if (!in_array($event["video"], $videos)) {
-				$json = file_get_contents(
-					'https://www.googleapis.com/youtube/v3/videos?id='.$event["video"].'&key='.$api_key.'&part=snippet');
-					$ytdata = json_decode($json);
-				$videos[$event["video"]] = array("title" => $ytdata->items[0]->snippet->title);
+				$videos[$event["video"]] = array();
 			}
 		}
 
@@ -94,16 +91,27 @@ if (isset($_POST['video'])) {
 		
 		foreach ($events as $event) {
 			if (!in_array($event["video"], $videos)) {
-				$json = file_get_contents(
-					'https://www.googleapis.com/youtube/v3/videos?id='.$event["video"].'&key='.$api_key.'&part=snippet');
-					$ytdata = json_decode($json);
-				$videos[$event["video"]] = array("title" => $ytdata->items[0]->snippet->title);
+				$videos[$event["video"]] = array();
 			}
 		}
 	} else {
 		$videos = array();
 	}
 }
+
+
+$json = file_get_contents(
+	'https://www.googleapis.com/youtube/v3/videos?id='.implode(",", $videos).'&key='.$api_key.'&part=snippet');
+$ytdata = json_decode($json);
+var_dump($json);
+
+$i = 0;
+foreach ($videos as $video=>$video_info) {
+	$video_info["title"] = $ytdata->items[$i]->snippet->title;
+	$i++;
+}
+
+
 // "user ID",time,video,event,"video time","new video time","playback speed","screen mode"
 ?>
 

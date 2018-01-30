@@ -2,6 +2,10 @@
 
 session_start();
 
+$api_key = file_get_contents("api_key.txt");
+echo $api_key;
+echo "<br/>"
+
 if (isset($_POST['video'])) {
 
 	$cur_video = $_POST['video'];
@@ -183,6 +187,7 @@ if (isset($_POST['video'])) {
 			<h4>Video stats:</h4>
 			<?php if (isset($cur_video)) { ?>
 				<p>Current video: <span id="current_video"><?php echo $cur_video ?></span></p>
+				<p>Video title: <span id="video_title"></span></p>
 				<p>Number of unique views: 
 					<?php 
 						echo sizeof($user_data);

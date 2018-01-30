@@ -23,6 +23,7 @@ body {
 
 #video_controls {
     text-align: left;
+    padding-top: 5px;
 }
 
 #youtube_url {
@@ -82,4 +83,8 @@ button .glyphicon {
 
 #right_container {
     padding: 10px;
+}
+
+#current_video {
+    display: none;
 }

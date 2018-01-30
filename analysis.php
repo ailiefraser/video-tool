@@ -3,8 +3,6 @@
 session_start();
 
 $api_key = file_get_contents("api_key.txt");
-echo $api_key;
-echo "<br/>";
 
 if (isset($_POST['video'])) {
 
@@ -28,12 +26,14 @@ if (isset($_POST['video'])) {
 		
 		foreach ($events as $event) {
 			if (!in_array($event["user ID"], $users)) {
-
 				array_push($users, $event["user ID"]);
 			}
 
 			if (!in_array($event["video"], $videos)) {
-				array_push($videos, $event["video"]);
+				$json = file_get_contents(
+					'https://www.googleapis.com/youtube/v3/videos?id='.$event["video"].'&key='.$api_key.'&part=snippet');
+					$ytdata = json_decode($json);
+				$videos[$event["video"]] = array("title" => $ytdata->items[0]->snippet->title);
 			}
 		}
 
@@ -94,7 +94,10 @@ if (isset($_POST['video'])) {
 		
 		foreach ($events as $event) {
 			if (!in_array($event["video"], $videos)) {
-				array_push($videos, $event["video"]);
+				$json = file_get_contents(
+					'https://www.googleapis.com/youtube/v3/videos?id='.$event["video"].'&key='.$api_key.'&part=snippet');
+					$ytdata = json_decode($json);
+				$videos[$event["video"]] = array("title" => $ytdata->items[0]->snippet->title);
 			}
 		}
 	} else {
@@ -136,12 +139,12 @@ if (isset($_POST['video'])) {
 					<p>Select a video to view analytics for:</p>
 					<?php
 						// insert video options here
-						foreach ($videos as $video) {
+						foreach ($videos as $video=>$video_info) {
 							?>
 							<form id="video_choice_form" action="analysis.php" method="post">
 								<button id=<?php echo $video ?> value=<?php echo $video ?> 
 									type="submit" name="video" class="btn btn-default">
-									<?php echo $video ?>
+									<?php echo $video_info["title"] ?>
 								</button>
 							</form>
 							<?php

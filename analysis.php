@@ -98,12 +98,10 @@ if (isset($_POST['video'])) {
 		$videos = array();
 	}
 }
-echo implode(",", array_keys($videos));
 
 $json = file_get_contents(
 	'https://www.googleapis.com/youtube/v3/videos?id='.implode(",", array_keys($videos)).'&key='.$api_key.'&part=snippet');
 $ytdata = json_decode($json);
-var_dump($json);
 
 $i = 0;
 foreach ($videos as $video=>$video_info) {
@@ -198,7 +196,7 @@ foreach ($videos as $video=>$video_info) {
 			<h4>Video stats:</h4>
 			<?php if (isset($cur_video)) { ?>
 				<p>Current video: <span id="current_video"><?php echo $cur_video ?></span></p>
-				<p>Video title: <span id="video_title"></span></p>
+				<p>Video title: <?php echo $videos[$cur_video]["title"]?></p>
 				<p>Number of unique views: 
 					<?php 
 						echo sizeof($user_data);

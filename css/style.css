@@ -75,3 +75,7 @@ button .glyphicon {
 #main_title {
     text-align: center;
 }
+
+#video_choice_form {
+    display: inline;
+}

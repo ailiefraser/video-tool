@@ -88,3 +88,7 @@ button .glyphicon {
 #current_video {
     display: none;
 }
+
+#heatmap_container {
+    position: absolute;
+}

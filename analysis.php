@@ -71,7 +71,7 @@ if (isset($_POST['video'])) {
 				}
 			}
 		}
-		var_dump($user_data);
+		//var_dump($user_data);
 	}
 } else {
 	if (file_exists("data/events.csv")) {
@@ -189,6 +189,7 @@ foreach ($videos as $video=>$video_info) {
 						</ul>
 					</div>
 				    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
+				    <div id="heatmap_container"></div>
 			  	</div>
 			</div>
 		</div>

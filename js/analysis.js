@@ -151,6 +151,13 @@ function updateSizes() {
 	$("#play_button").height($("#playback_dropdown button").height());
 	$("#mute_button").height($("#playback_dropdown button").height());
 	$("#size_button").height($("#playback_dropdown button").height());
+
+	$("#heatmap_container").css("background-color", "red");
+	$("#heatmap_container").height($("#seek_bar").height());
+	$("#heatmap_container").width($("#seek_bar").width());
+	$("#heatmap_container").offset(
+		{"left": $("#seek_bar").offset().left, 
+		"top": $("#seek_bar").offset().top});
 }
 
 function saveEvent(event, video_time, new_video_time) {
@@ -296,5 +303,4 @@ function initButtons() {
 			}
 		}
 	});
-
 }

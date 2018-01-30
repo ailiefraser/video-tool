@@ -2,6 +2,30 @@
 
 session_start();
 
+if (file_exists("data/events.csv")) {
+	$events_file = fopen("data/events.csv", "r");
+	$events = array();
+	$events_header = null;
+	while ($row = fgetcsv($events_file)) {
+		if ($events_header === null) {
+	        $events_header = $row;
+	        continue;
+	    }
+	    $events[] = array_combine($events_header, $row);
+	}
+	fclose($events_file);
+
+	$videos = array();
+	
+	foreach ($events as $event) {
+		if (!in_array($event["video"], $videos)) {
+			array_push($videos, $event["video"]);
+		}
+	}
+} else {
+	$videos = array();
+}
+
 if (isset($_POST['video'])) {
 
 	$cur_video = $_POST['video'];
@@ -65,30 +89,6 @@ if (isset($_POST['video'])) {
 			}
 		}
 		var_dump($user_data);
-	}
-} else {
-	if (file_exists("data/events.csv")) {
-		$events_file = fopen("data/events.csv", "r");
-		$events = array();
-		$events_header = null;
-		while ($row = fgetcsv($events_file)) {
-			if ($events_header === null) {
-		        $events_header = $row;
-		        continue;
-		    }
-		    $events[] = array_combine($events_header, $row);
-		}
-		fclose($events_file);
-
-		$videos = array();
-		
-		foreach ($events as $event) {
-			if (!in_array($event["video"], $videos)) {
-				array_push($videos, $event["video"]);
-			}
-		}
-	} else {
-		$videos = array();
 	}
 }
 // "user ID",time,video,event,"video time","new video time","playback speed","screen mode"

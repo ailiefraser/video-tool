@@ -35,22 +35,19 @@ function makeTimeString(time) {
 // 3. This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
 function onYouTubeIframeAPIReady() {
-	if (current_video != "") {
-		loadPlayer();
-	}
-}
-
-function loadPlayer() {
-	player = new YT.Player('player', {
+	if ($("#current_video").length) {
+		current_video = $("#current_video").html();
+		player = new YT.Player('player', {
 		width: start_width,
-		height: start_width / aspect_ratio,
-		videoId: current_video,
-		playerVars: { 'showinfo': 0, 'rel': 0, 'disablekb': 1, 'controls': 0, 'cc_load_policy': 1 },
-		events: {
-			'onReady': onPlayerReady,
-			'onStateChange': onPlayerStateChange
-		}
-	});
+			height: start_width / aspect_ratio,
+			videoId: current_video,
+			playerVars: { 'showinfo': 0, 'rel': 0, 'disablekb': 1, 'controls': 0, 'cc_load_policy': 1 },
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
 }
 
 // 4. The API will call this function when the video player is ready.
@@ -299,10 +296,5 @@ function initButtons() {
 			}
 		}
 	});
-
-	if ($("#current_video").length) {
-		current_video = $("#current_video").html();
-		loadPlayer();
-	}
 
 }

@@ -98,7 +98,7 @@ if (isset($_POST['video'])) {
 		$videos = array();
 	}
 }
-
+echo implode(",", $videos);
 
 $json = file_get_contents(
 	'https://www.googleapis.com/youtube/v3/videos?id='.implode(",", $videos).'&key='.$api_key.'&part=snippet');

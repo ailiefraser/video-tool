@@ -70,5 +70,8 @@ button .glyphicon {
 
 #total_container {
     display: flex;
+}
+
+#main_title {
     text-align: center;
 }

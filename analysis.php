@@ -106,8 +106,10 @@ $ytdata = json_decode($json);
 $i = 0;
 foreach ($videos as $video=>$video_info) {
 	$videos[$video]["title"] = $ytdata->items[$i]->snippet->title;
+	$videos[$video]["duration"] = $ytdata->items[$i]->fileDetails->durationMs / 1000.0;
 	$i++;
 }
+var_dump($videos);
 
 
 // "user ID",time,video,event,"video time","new video time","playback speed","screen mode"
@@ -193,6 +195,8 @@ foreach ($videos as $video=>$video_info) {
 				    </div>
 				    <?php foreach ($user_data as $u=>$user_events) {
 				    		foreach ($user_events as $index=>$event_info) {
+				    			$start = floatval($event_info["start_time"]);
+				    			$duration = floatval($event_info["end_time"]) - $start;
 				    			?>
 				    			<div class="heatmap_element" style="width: 20"></div>
 				    			<?php var_dump($event_info);

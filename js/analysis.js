@@ -152,7 +152,7 @@ function updateSizes() {
 	$("#mute_button").height($("#playback_dropdown button").height());
 	$("#size_button").height($("#playback_dropdown button").height());
 
-	$("#heatmap_container").css("background-color", "gray");
+	//$("#heatmap_container").css("background-color", "gray");
 	$("#heatmap_container").height($("#seek_bar").height());
 	$("#heatmap_container").width($("#seek_bar").width());
 	$("#heatmap_container").offset(

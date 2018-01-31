@@ -14,6 +14,7 @@ body {
 #seek_bar {
     display: block;
     width: 640px;
+    padding: 10px 0px;
 }
 
 #video_header, #video_container {

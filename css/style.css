@@ -98,6 +98,5 @@ button .glyphicon {
 .heatmap_element {
     position: absolute;
     z-index: -50;
-    background-color: rgba(255, 0, 0, 0.1);
     height: 100%;
 }

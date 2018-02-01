@@ -171,13 +171,30 @@ function saveEvent(event, video_time, new_video_time) {
 }
 
 // adapted from http://www.andrewnoske.com/wiki/Code_-_heatmaps_and_color_gradients
-function getGradientValue(value) {
+function getGradientValueSimple(value) {
 	var aR = 0;   var aG = 255; var aB = 255;  // RGB for our 1st color (blue in this case).
 	var bR = 255; var bG = 0; var bB = 0;    // RGB for our 2nd color (red in this case).
 
 	var red   = Math.round((bR - aR) * value + aR);      // Evaluated as -255*value + 255.
 	var green = Math.round((bG - aG) * value + aG);      // Evaluates as 0.
 	var blue  = Math.round((bB - aB) * value + aB);      // Evaluates as 255*value + 0.
+	return `rgba(${red}, ${green}, ${blue}, 1)`;
+}
+
+function getGradientValue(value) {
+	var NUM_COLORS = 5;
+	var color = [ [0,0,255], [0,255,255], [0,255,0], [255,255,0], [255,0,0] ];
+	// A static array of 5 colors:  (blue, cyan,  green,  yellow,  red) using {r,g,b} for each.
+
+	value = value * (NUM_COLORS-1);        // Will multiply value by 3.
+	var idx1  = Math.floor(value);                  // Our desired color will be after this index.
+	var idx2  = idx1+1;                        // ... and before this index (inclusive).
+	var fractBetween = value - Math.float(idx1);    // Distance between the two indexes (0-1).
+
+	var red   = (color[idx2][0] - color[idx1][0])*fractBetween + color[idx1][0];
+	var green = (color[idx2][1] - color[idx1][1])*fractBetween + color[idx1][1];
+	var blue  = (color[idx2][2] - color[idx1][2])*fractBetween + color[idx1][2];
+
 	return `rgba(${red}, ${green}, ${blue}, 1)`;
 }
 

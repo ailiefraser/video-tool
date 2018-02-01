@@ -205,13 +205,10 @@ foreach ($videos as $video=>$video_info) {
 				    	<?php 
 				    	$all_nums = array();
 				    	for ($left = 0; $left <= 99; $left++) {
-				    		echo "left: " . $left . "<br/>";
 				    		$right = $left + 1;
 				    		$num_events = 0;
 				    		foreach ($user_data as $u=>$user_events) {
-				    			echo "u: " . $u . "<br/>";
 				    			foreach ($user_events as $index=>$event_info) {
-				    				echo "index: " . $index . "<br/>";
 				    				$start = intval($event_info["start_time"]);
 				    				$end = intval($event_info["end_time"]);
 

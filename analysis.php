@@ -222,12 +222,13 @@ foreach ($videos as $video=>$video_info) {
 				    		}
 				    		array_push($all_nums, $num_events);
 				    	}
-				    	echo min($all_nums) . ", " . max($all_nums) . "<br/>";
+				    	//echo min($all_nums) . ", " . max($all_nums) . "<br/>";
 				    	var_dump($all_nums);
+				    	$max_num = max($all_nums);
+				    	$min_num = min($all_nums);
 
 				    	for ($i = 0; $i <= 99; $i++) {
-				    		echo $all_nums[$i] . ", " . ($all_nums[$i] - min($all_nums)) . ", " . floatval(max($all_nums) - min($all_nums)) . "<br/>";
-				    		$all_nums[$i] = ($all_nums[$i] - min($all_nums)) / floatval(max($all_nums) - min($all_nums));
+				    		$all_nums[$i] = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
 				    	}
 				    	var_dump($all_nums);
 

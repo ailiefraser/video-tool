@@ -214,7 +214,8 @@ foreach ($videos as $video=>$video_info) {
 
 				    				$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
 				    				$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
-				    				echo $start_location . ", " . $end_location . "<br/>";
+				    				var_dump($start_location);
+				    				var_dump($end_location);
 
 				    				if ($start_location <= $left && $end_location >= $right) {
 				    					$num_events++;

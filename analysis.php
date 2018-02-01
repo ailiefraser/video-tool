@@ -121,7 +121,6 @@ foreach ($videos as $video=>$video_info) {
 }
 //var_dump($videos);
 
-
 // "user ID",time,video,event,"video time","new video time","playback speed","screen mode"
 ?>
 
@@ -223,30 +222,17 @@ foreach ($videos as $video=>$video_info) {
 				    		array_push($all_nums, $num_events);
 				    	}
 				    	//echo min($all_nums) . ", " . max($all_nums) . "<br/>";
-				    	var_dump($all_nums);
+				    	//var_dump($all_nums);
 				    	$max_num = max($all_nums);
 				    	$min_num = min($all_nums);
 
 				    	for ($i = 0; $i <= 99; $i++) {
-				    		$all_nums[$i] = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
-				    	}
-				    	var_dump($all_nums);
-
-
-				    	foreach ($user_data as $u=>$user_events) {
-				    		foreach ($user_events as $index=>$event_info) {
-				    			$start = intval($event_info["start_time"]);
-				    			$end = intval($event_info["end_time"]);
-
-				    			$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
-				    			$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
-				    			$width = $end_location - $start_location;
-				    			?>
-				    			<div class="heatmap_element" 
-				    				data-left=<?php echo $start_location ?>>
-				    			</div>
-				    			<?php
-				    		}
+				    		$normalized_num = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
+				    		?>
+				    		<div class="heatmap_element" 
+			    				data-left=<?php echo $i ?> data-color=<?php echo $normalized_num ?>>
+			    			</div>
+			    			<?php
 				    	} ?>
 				    </div>
 			  	</div>

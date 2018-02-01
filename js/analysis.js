@@ -162,6 +162,7 @@ function updateSizes() {
 	$(".heatmap_element").each(function() {
 		$(this).width(($("#heatmap_container").width() / 100));
 		$(this).offset({"left": ($("#heatmap_container").width() / 100) * $(this).attr("data-left")});
+		$(this).css("background-color", getGradientValue(parseFloat($(this).attr("data-color"))));
 	});
 }
 

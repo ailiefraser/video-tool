@@ -225,7 +225,7 @@ foreach ($videos as $video=>$video_info) {
 				    	var_dump($all_nums);
 
 				    	for ($i = 0; $i <= 99; $i++) {
-				    		$all_nums[$i] = ($all_nums[$i] - min($all_nums)) / max($all_nums) - min($all_nums);
+				    		$all_nums[$i] = ($all_nums[$i] - min($all_nums)) / (max($all_nums) - min($all_nums));
 				    	}
 				    	var_dump($all_nums);
 

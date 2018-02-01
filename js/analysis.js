@@ -189,12 +189,12 @@ function getGradientValue(value) {
 	value = value * (NUM_COLORS-1);        // Will multiply value by 3.
 	var idx1  = Math.floor(value);                  // Our desired color will be after this index.
 	var idx2  = idx1+1;                        // ... and before this index (inclusive).
-	var fractBetween = value - Math.float(idx1);    // Distance between the two indexes (0-1).
+	var fractBetween = value - parseFloat(idx1);    // Distance between the two indexes (0-1).
 
 	var red   = Math.round((color[idx2][0] - color[idx1][0])*fractBetween + color[idx1][0]);
 	var green = Math.round((color[idx2][1] - color[idx1][1])*fractBetween + color[idx1][1]);
 	var blue  = Math.round((color[idx2][2] - color[idx1][2])*fractBetween + color[idx1][2]);
-
+	console.log(`rgba(${red}, ${green}, ${blue}, 1)`);
 	return `rgba(${red}, ${green}, ${blue}, 1)`;
 }
 

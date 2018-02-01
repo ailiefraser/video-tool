@@ -214,7 +214,6 @@ foreach ($videos as $video=>$video_info) {
 
 				    				$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
 				    				$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
-				    				echo $start_location . ", " . $end_location . "<br/>";
 
 				    				if ($start_location <= $left && $end_location >= $right) {
 				    					$num_events++;
@@ -223,12 +222,12 @@ foreach ($videos as $video=>$video_info) {
 				    		}
 				    		array_push($all_nums, $num_events);
 				    	}
-				    	//var_dump($all_nums);
+				    	var_dump($all_nums);
 
 				    	for ($i = 0; $i <= 99; $i++) {
 				    		$all_nums[$i] = ($all_nums[$i] - min($all_nums)) / max($all_nums) - min($all_nums);
 				    	}
-				    	//var_dump($all_nums);
+				    	var_dump($all_nums);
 
 
 				    	foreach ($user_data as $u=>$user_events) {

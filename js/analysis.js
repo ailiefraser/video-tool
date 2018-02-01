@@ -172,7 +172,7 @@ function saveEvent(event, video_time, new_video_time) {
 
 // adapted from http://www.andrewnoske.com/wiki/Code_-_heatmaps_and_color_gradients
 function getGradientValue(value) {
-	var aR = 0;   var aG = 0; var aB = 255;  // RGB for our 1st color (blue in this case).
+	var aR = 0;   var aG = 255; var aB = 255;  // RGB for our 1st color (blue in this case).
 	var bR = 255; var bG = 0; var bB = 0;    // RGB for our 2nd color (red in this case).
 
 	var red   = Math.round((bR - aR) * value + aR);      // Evaluated as -255*value + 255.

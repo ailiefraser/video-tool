@@ -223,12 +223,12 @@ foreach ($videos as $video=>$video_info) {
 				    		}
 				    		array_push($all_nums, $num_events);
 				    	}
-				    	var_dump($all_nums);
+				    	//var_dump($all_nums);
 
 				    	for ($i = 0; $i <= 99; $i++) {
 				    		$all_nums[$i] = ($all_nums[$i] - min($all_nums)) / max($all_nums) - min($all_nums);
 				    	}
-				    	var_dump($all_nums);
+				    	//var_dump($all_nums);
 
 
 				    	foreach ($user_data as $u=>$user_events) {

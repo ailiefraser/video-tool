@@ -160,13 +160,24 @@ function updateSizes() {
 		"top": $("#seek_bar").offset().top});
 
 	$(".heatmap_element").each(function() {
-		$(this).width(($("#heatmap_container").width() / 100) * $(this).attr("data-width"));
+		$(this).width(($("#heatmap_container").width() / 100));
 		$(this).offset({"left": ($("#heatmap_container").width() / 100) * $(this).attr("data-left")});
 	});
 }
 
 function saveEvent(event, video_time, new_video_time) {
 	// nope no saving this is analysis version
+}
+
+// adapted from http://www.andrewnoske.com/wiki/Code_-_heatmaps_and_color_gradients
+function getGradientValue(value) {
+	var aR = 0;   var aG = 0; var aB = 255;  // RGB for our 1st color (blue in this case).
+	var bR = 255; var bG = 0; var bB = 0;    // RGB for our 2nd color (red in this case).
+
+	var red   = (bR - aR) * value + aR;      // Evaluated as -255*value + 255.
+	var green = (bG - aG) * value + aG;      // Evaluates as 0.
+	var blue  = (bB - aB) * value + aB;      // Evaluates as 255*value + 0.
+	return `rgba(${red}, ${green}, ${blue}, 0.5)`;
 }
 
 

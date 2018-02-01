@@ -71,6 +71,14 @@ if (isset($_POST['video'])) {
 				}
 			}
 		}
+		// // get all events from this video in order they happened 
+		// $video_events = array();
+		// foreach ($events as $event) {
+		// 	if (strcmp($event["video"], $cur_video) == 0) {
+		// 		array_push($video_events, $event);
+		// 	}
+		// }
+
 		//var_dump($user_data);
 	}
 } else {
@@ -194,7 +202,35 @@ foreach ($videos as $video=>$video_info) {
 					</div>
 				    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
 				    <div id="heatmap_container">
-				    	<?php foreach ($user_data as $u=>$user_events) {
+				    	<?php 
+				    	$all_nums = array();
+				    	for ($left = 0; $left <= 99; $left++) {
+				    		$right = $left + 1;
+				    		$num_events = 0;
+				    		foreach ($user_data as $u=>$user_events) {
+				    			foreach ($user_events as $index=>$event_info) {
+				    				$start = intval($event_info["start_time"]);
+				    				$end = intval($event_info["end_time"]);
+
+				    				$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
+				    				$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
+
+				    				if ($start_location <= $left && $end_location >= $right) {
+				    					$num_events++;
+				    				}
+				    			}
+				    		}
+				    		array_push($all_nums, $num_events);
+				    	}
+				    	var_dump($all_nums);
+
+				    	for ($i = 0; $i <= 99; $i++) {
+				    		$all_nums[$i] = ($all_nums[$i] - min($all_nums)) / max($all_nums) - min($all_nums);
+				    	}
+				    	var_dump($all_nums);
+
+
+				    	foreach ($user_data as $u=>$user_events) {
 				    		foreach ($user_events as $index=>$event_info) {
 				    			$start = intval($event_info["start_time"]);
 				    			$end = intval($event_info["end_time"]);
@@ -204,7 +240,7 @@ foreach ($videos as $video=>$video_info) {
 				    			$width = $end_location - $start_location;
 				    			?>
 				    			<div class="heatmap_element" 
-				    				data-width=<?php echo $width ?> data-left=<?php echo $start_location ?>>
+				    				data-left=<?php echo $start_location ?>>
 				    			</div>
 				    			<?php
 				    		}

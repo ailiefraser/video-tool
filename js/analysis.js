@@ -186,13 +186,19 @@ function getGradientValue(value) {
 	var color = [ [0,0,255], [0,255,255], [0,255,0], [255,255,0], [255,0,0] ];
 	// A static array of 5 colors:  (blue, cyan,  green,  yellow,  red) using {r,g,b} for each.
 
-	value = value * (NUM_COLORS-1);        // Will multiply value by 3.
-	console.log(value);
-	var idx1  = Math.floor(value);                  // Our desired color will be after this index.
-	console.log(idx1);
-	var idx2  = idx1+1;                        // ... and before this index (inclusive).
-	console.log(idx2);
-	var fractBetween = value - parseFloat(idx1);    // Distance between the two indexes (0-1).
+	var idx1; var idx2; var fractBetween;
+
+	if(value <= 0)      {  idx1 = idx2 = 0;            }    // accounts for an input <=0
+	else if(value >= 1)  {  idx1 = idx2 = NUM_COLORS-1; }    // accounts for an input >=0
+	else {
+		value = value * (NUM_COLORS-1);        // Will multiply value by 4.
+		console.log(value);
+		idx1  = Math.floor(value);                  // Our desired color will be after this index.
+		console.log(idx1);
+		idx2  = idx1+1;                        // ... and before this index (inclusive).
+		console.log(idx2);
+		fractBetween = value - parseFloat(idx1);    // Distance between the two indexes (0-1).
+	}
 
 	var red   = Math.round((color[idx2][0] - color[idx1][0])*fractBetween + color[idx1][0]);
 	var green = Math.round((color[idx2][1] - color[idx1][1])*fractBetween + color[idx1][1]);

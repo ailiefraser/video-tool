@@ -222,6 +222,7 @@ foreach ($videos as $video=>$video_info) {
 				    		}
 				    		array_push($all_nums, $num_events);
 				    	}
+				    	echo min($all_nums) . ", " . max($all_nums) . "<br/>";
 				    	var_dump($all_nums);
 
 				    	for ($i = 0; $i <= 99; $i++) {

@@ -175,10 +175,9 @@ function getGradientValue(value) {
 	var aR = 0;   var aG = 0; var aB = 255;  // RGB for our 1st color (blue in this case).
 	var bR = 255; var bG = 0; var bB = 0;    // RGB for our 2nd color (red in this case).
 
-	var red   = (bR - aR) * value + aR;      // Evaluated as -255*value + 255.
-	var green = (bG - aG) * value + aG;      // Evaluates as 0.
-	var blue  = (bB - aB) * value + aB;      // Evaluates as 255*value + 0.
-	console.log(`rgb(${red}, ${green}, ${blue})`);
+	var red   = Math.round((bR - aR) * value + aR);      // Evaluated as -255*value + 255.
+	var green = Math.round((bG - aG) * value + aG);      // Evaluates as 0.
+	var blue  = Math.round((bB - aB) * value + aB);      // Evaluates as 255*value + 0.
 	return `rgb(${red}, ${green}, ${blue})`;
 }
 

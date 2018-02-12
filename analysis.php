@@ -72,9 +72,10 @@ if (isset($_POST['video'])) {
 			}
 		}
 		// get captions
-		$captions_file = file_get_contents(
-			'http://video.google.com/timedtext?lang=en&v='.$cur_video);
-		var_dump($captions_file);
+		$captions_info = file_get_contents(
+			'https://www.googleapis.com/youtube/v3/captions/videoId='.$cur_video.'&part=snippet&key='.$api_key);
+		var_dump($captions_info);
+
 	}
 } else {
 	if (file_exists("data/events.csv")) {

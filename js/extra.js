@@ -13,7 +13,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var seeking = false;
 var duration = 0;
-var playback_speed;
+var playback_speed = 1;
 var seek_start;
 var muted = false;
 var current_video = 'XtlLI_pBC3s';

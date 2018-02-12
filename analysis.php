@@ -76,7 +76,7 @@ if (isset($_POST['video'])) {
 			'https://www.googleapis.com/youtube/v3/captions?id='.$cur_video.
 			'&key='.$api_key.'&part=snippet,contentDetails');
 		$ytdata = json_decode($json);
-		var_dump($yt_data);
+		var_dump($ytdata);
 	}
 } else {
 	if (file_exists("data/events.csv")) {
@@ -223,14 +223,17 @@ foreach ($videos as $video=>$video_info) {
 				    	$max_num = max($all_nums);
 				    	$min_num = min($all_nums);
 
-				    	for ($i = 0; $i <= 99; $i++) {
-				    		$normalized_num = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
-				    		?>
-				    		<div class="heatmap_element" 
-			    				data-left=<?php echo $i ?> data-color=<?php echo $normalized_num ?>>
-			    			</div>
-			    			<?php
-				    	} ?>
+				    	if ($max_num != 0) {
+
+					    	for ($i = 0; $i <= 99; $i++) {
+					    		$normalized_num = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
+					    		?>
+					    		<div class="heatmap_element" 
+				    				data-left=<?php echo $i ?> data-color=<?php echo $normalized_num ?>>
+				    			</div>
+				    			<?php
+					    	} 
+					    } ?>
 				    </div>
 			  	</div>
 			</div>

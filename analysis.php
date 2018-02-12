@@ -71,15 +71,12 @@ if (isset($_POST['video'])) {
 				}
 			}
 		}
-		// // get all events from this video in order they happened 
-		// $video_events = array();
-		// foreach ($events as $event) {
-		// 	if (strcmp($event["video"], $cur_video) == 0) {
-		// 		array_push($video_events, $event);
-		// 	}
-		// }
-
-		//var_dump($user_data);
+		// get captions
+		$json = file_get_contents(
+			'https://www.googleapis.com/youtube/v3/captions?id='.$cur_video.
+			'&key='.$api_key.'&part=snippet,contentDetails');
+		$ytdata = json_decode($json);
+		var_dump($yt_data);
 	}
 } else {
 	if (file_exists("data/events.csv")) {

@@ -85,11 +85,11 @@ button .glyphicon {
 #heatmap_container {
     position: absolute;
     z-index: -100;
+    padding-top: 10px;
 }
 
 .heatmap_element {
     position: absolute;
     z-index: -50;
-    height: 60%;
-    vertical-align: middle;
+    height: 100%;
 }

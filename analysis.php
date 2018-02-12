@@ -167,9 +167,7 @@ foreach ($videos as $video=>$video_info) {
 			</div>
 			<div id="video_container">
 				<div id="player"></div>
-				<div id="player_mask">
-					<p id="mask_text">Click the play button below to play this video</p>
-				</div>
+				<div id="player_mask"></div>
 				<div id="video_controls" class="controls">
 					<button id="restart_button" type="button" class="btn btn-default" aria-label="Left Align">
 						<span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>

@@ -45,15 +45,7 @@ body {
     left: 0;
     width: 640;
     height: 390;
-}
-
-#mask_text {
-    color: red;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 #volume_bar {

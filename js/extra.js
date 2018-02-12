@@ -167,7 +167,16 @@ function saveEvent(event, video_time, new_video_time) {
     });
 }
 
-
+function togglePlayPause() {
+	var state = player.getPlayerState();
+	if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.ENDED || state == YT.PlayerState.CUED) {
+		saveEvent('play video', player.getCurrentTime());
+		player.playVideo();
+	} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
+		saveEvent('pause video', player.getCurrentTime());
+		player.pauseVideo();
+	}
+}
 
 function initButtons() {
 
@@ -178,16 +187,8 @@ function initButtons() {
 	});
 
 	// Initialize play/pause button
-	$("#play_button").click(function() {
-		var state = player.getPlayerState();
-		if (state == YT.PlayerState.PAUSED || state == YT.PlayerState.ENDED || state == YT.PlayerState.CUED) {
-			saveEvent('play video', player.getCurrentTime());
-			player.playVideo();
-		} else if (state == YT.PlayerState.PLAYING || state == YT.PlayerState.BUFFERING) {
-			saveEvent('pause video', player.getCurrentTime());
-			player.pauseVideo();
-		}
-	});
+	$("#play_button").click(togglePlayPause);
+	$("#player_mask").click(togglePlayPause);
 
 	// Initialize restart button
 	$("#restart_button").click(function() {

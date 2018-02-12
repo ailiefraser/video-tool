@@ -73,8 +73,7 @@ if (isset($_POST['video'])) {
 		}
 		// get captions
 		$captions_file = file_get_contents(
-			'https://www.googleapis.com/youtube/v3/captions?id='.$cur_video.
-			'&key='.$api_key);
+			'https://www.googleapis.com/youtube/v3/captions?id='.$cur_video);
 		var_dump($captions_file);
 	}
 } else {

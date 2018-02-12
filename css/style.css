@@ -91,4 +91,5 @@ button .glyphicon {
     position: absolute;
     z-index: -50;
     height: 60%;
+    vertical-align: middle;
 }

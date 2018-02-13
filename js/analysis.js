@@ -157,7 +157,7 @@ function updateSizes() {
 	$("#heatmap_container").width($("#seek_bar").width());
 	$("#heatmap_container").offset(
 		{"left": $("#seek_bar").offset().left, 
-		"top": $("#seek_bar").offset().top});
+		"top": $("#seek_bar").offset().top + 10});
 
 	$(".heatmap_element").each(function() {
 		var new_color = getGradientValue(parseFloat($(this).attr("data-color")));

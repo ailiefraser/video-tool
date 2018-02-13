@@ -364,7 +364,7 @@ function initButtons() {
 	// load visualization
 	var vlSpec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-		"width": "75%",
+		"width": Math.round($("#right_container").width() * 0.75),
 		"data": {
 			"values": view_data
 		},

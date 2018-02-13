@@ -60,6 +60,8 @@ function onPlayerReady(event) {
 	duration = Math.floor(player.getDuration());
 	$("#total_time").html(makeTimeString(duration));
 	$("#current_time").html(makeTimeString(Math.floor(player.getCurrentTime())));
+
+	loadVisualization();
 }
 
 // 5. The API calls this function when the player's state changes.
@@ -225,6 +227,35 @@ function togglePlayPause() {
 	}
 }
 
+function loadVisualization() {
+
+	var view_list = JSON.parse($('input[name=view_data]').val());
+	var view_data = [];
+	for (var i = 0; i < view_list.length; i++) {
+		var time = (duration / 100) * i; //in seconds
+		view_data.push({"Time": time, "Number of unique views": view_list[i]});
+	}
+	console.log(view_data);
+
+	// load visualization
+	var vlSpec = {
+		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+		"width": Math.round($("#right_container").width() * 0.75),
+		"data": {
+			"values": view_data
+		},
+		"mark": "line",
+		"encoding": {
+			"x": {"field": "Time", "type": "temporal", "timeUnit": "seconds", "axis": {"format": "%H:%M:%S"}},
+    		"y": {"field": "Number of unique views", "type": "quantitative"}
+		}
+	};
+
+	// Embed the visualization in the container with id `vis`
+	vegaEmbed("#vis", vlSpec);
+
+}
+
 function initButtons() {
 
 	updateSizes();
@@ -355,28 +386,4 @@ function initButtons() {
 		}
 	});
 
-	var view_list = JSON.parse($('input[name=view_data]').val());
-	var view_data = [];
-	for (var i = 0; i < view_list.length; i++) {
-		var time = (duration / 100) * i; //in seconds
-		view_data.push({"Time": time, "Number of unique views": view_list[i]});
-	}
-	console.log(view_data);
-
-	// load visualization
-	var vlSpec = {
-		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-		"width": Math.round($("#right_container").width() * 0.75),
-		"data": {
-			"values": view_data
-		},
-		"mark": "line",
-		"encoding": {
-			"x": {"field": "Time", "type": "temporal", "timeUnit": "seconds", "axis": {"format": "%H:%M:%S"}},
-    		"y": {"field": "Number of unique views", "type": "quantitative"}
-		}
-	};
-
-	// Embed the visualization in the container with id `vis`
-	vegaEmbed("#vis", vlSpec);
 }

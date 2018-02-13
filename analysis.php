@@ -215,46 +215,48 @@ foreach ($videos as $video=>$video_info) {
 							<li><a data-speed="1" href="#">1</a></li>
 						</ul>
 					</div>
-				    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
-				    <div id="heatmap_container">
-				    	<?php 
-				    	if (isset($cur_video)) {
-					    	$all_nums = array();
-					    	for ($left = 0; $left <= 99; $left++) {
-					    		$right = $left + 1;
-					    		$num_events = 0;
-					    		foreach ($user_data as $u=>$user_events) {
-					    			foreach ($user_events as $index=>$event_info) {
-					    				$start = intval($event_info["start_time"]);
-					    				$end = intval($event_info["end_time"]);
+					<div id="seeker_container">
+					    <input type="range" id="seek_bar" value="0" readonly="" class="clear">
+					    <div id="heatmap_container">
+					    	<?php 
+					    	if (isset($cur_video)) {
+						    	$all_nums = array();
+						    	for ($left = 0; $left <= 99; $left++) {
+						    		$right = $left + 1;
+						    		$num_events = 0;
+						    		foreach ($user_data as $u=>$user_events) {
+						    			foreach ($user_events as $index=>$event_info) {
+						    				$start = intval($event_info["start_time"]);
+						    				$end = intval($event_info["end_time"]);
 
-					    				$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
-					    				$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
+						    				$start_location = round((100 / $videos[$cur_video]["duration"]) * $start);
+						    				$end_location = round((100 / $videos[$cur_video]["duration"]) * $end);
 
-					    				if ($start_location <= $left && $end_location >= $right) {
-					    					$num_events++;
-					    				}
-					    			}
-					    		}
-					    		array_push($all_nums, $num_events);
-					    	}
-					    	//echo min($all_nums) . ", " . max($all_nums) . "<br/>";
-					    	//var_dump($all_nums);
-					    	$max_num = max($all_nums);
-					    	$min_num = min($all_nums);
+						    				if ($start_location <= $left && $end_location >= $right) {
+						    					$num_events++;
+						    				}
+						    			}
+						    		}
+						    		array_push($all_nums, $num_events);
+						    	}
+						    	//echo min($all_nums) . ", " . max($all_nums) . "<br/>";
+						    	//var_dump($all_nums);
+						    	$max_num = max($all_nums);
+						    	$min_num = min($all_nums);
 
-					    	if ($max_num != 0) {
+						    	if ($max_num != 0) {
 
-						    	for ($i = 0; $i <= 99; $i++) {
-						    		$normalized_num = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
-						    		?>
-						    		<div class="heatmap_element" 
-					    				data-left=<?php echo $i ?> data-color=<?php echo $normalized_num ?>>
-					    			</div>
-					    			<?php
-						    	} 
-						    } 
-						} ?>
+							    	for ($i = 0; $i <= 99; $i++) {
+							    		$normalized_num = ($all_nums[$i] - $min_num) / floatval($max_num - $min_num);
+							    		?>
+							    		<div class="heatmap_element" 
+						    				data-left=<?php echo $i ?> data-color=<?php echo $normalized_num ?>>
+						    			</div>
+						    			<?php
+							    	} 
+							    } 
+							} ?>
+						</div>
 				    </div>
 			  	</div>
 			</div>

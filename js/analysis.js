@@ -355,17 +355,17 @@ function initButtons() {
 		}
 	});
 
-	
+	var view_list = JSON.parse($('input[name=view_data]').val());
+	var view_data = [];
+	for (var i = 0; i < view_list.length; i++) {
+		view_data.append({"a": i, "b": view_list[i]});
+	}
 
 	// load visualization
 	var vlSpec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
 		"data": {
-			"values": [
-				{"a": "C", "b": 2}, {"a": "C", "b": 7}, {"a": "C", "b": 4},
-				{"a": "D", "b": 1}, {"a": "D", "b": 2}, {"a": "D", "b": 6},
-				{"a": "E", "b": 8}, {"a": "E", "b": 4}, {"a": "E", "b": 7}
-			]
+			"values": view_data
 		},
 		"mark": "point",
 		"encoding": {

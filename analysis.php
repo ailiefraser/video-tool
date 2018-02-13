@@ -268,6 +268,15 @@ foreach ($videos as $video=>$video_info) {
 						</div>
 						<input type=hidden name=view_data value=<?php echo json_encode($all_nums); ?> />
 				    </div>
+				    <?php 
+					if (isset($cur_video)) { ?>
+				    	<div id="legend">
+				    		<b>Legend: </b>
+				    		<span id="min_views"></span> views 
+				    		<img src="heatmap_legend.png" width=100> 
+				    		<span id="max_views"></span> views
+				    	</div>
+				    <?php } ?>
 			  	</div>
 			</div>
 		</div>

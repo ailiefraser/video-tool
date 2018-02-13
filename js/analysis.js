@@ -255,6 +255,9 @@ function loadVisualization() {
 	// Embed the visualization in the container with id `vis`
 	vegaEmbed("#vis", vlSpec);
 
+	$("#min_views").html(Math.min(view_list));
+	$("#max_views").html(Math.max(view_list));
+
 }
 
 function initButtons() {

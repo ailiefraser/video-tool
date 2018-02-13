@@ -164,7 +164,7 @@ function updateSizes() {
 	$(".heatmap_element").each(function() {
 		var new_color = getGradientValue(parseFloat($(this).attr("data-color")));
 		$(this).width(($("#heatmap_container").width() / 100));
-		$(this).offset({"left": ($("#heatmap_container").width() / 100) * $(this).attr("data-left")});
+		$(this).offset({"left": ($("#heatmap_container").width() / 100) * parseInt($(this).attr("data-left"))});
 		$(this).css("background-color", new_color);
 		$(this).css("box-shadow", "0 0 5px 5px " + new_color);
 	});

@@ -176,8 +176,8 @@ foreach ($videos as $video=>$video_info) {
 <div class="device-lg visible-lg"></div>
 <body>
 	<h3 id="main_title">Video analysis</h3>
-	<div id="total_container">
-		<div id="left_container">
+	<div id="total_container" class="row container">
+		<div id="left_container" class="col-md-7">
 			<div id="video_header">
 				<div>
 					<p>Select a video to view analytics for:</p>
@@ -271,7 +271,7 @@ foreach ($videos as $video=>$video_info) {
 			  	</div>
 			</div>
 		</div>
-		<div id="right_container">
+		<div id="right_container" class="col-md-5">
 			<h4>Video stats:</h4>
 			<?php if (isset($cur_video)) { ?>
 				<span id="current_video"><?php echo $cur_video ?></span>

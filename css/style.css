@@ -62,10 +62,6 @@ button .glyphicon {
     font-size: 1.2em;
 }
 
-#total_container {
-    display: flex;
-}
-
 #main_title {
     text-align: center;
 }

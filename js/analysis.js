@@ -364,12 +364,13 @@ function initButtons() {
 	// load visualization
 	var vlSpec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+		"width": "75%",
 		"data": {
 			"values": view_data
 		},
 		"mark": "line",
 		"encoding": {
-			"x": {"field": "Time", "type": "temporal"},
+			"x": {"field": "Time", "type": "quantitative"},
     		"y": {"field": "Number of unique views", "type": "quantitative"}
 		}
 	};

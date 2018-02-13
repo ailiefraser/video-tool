@@ -154,6 +154,9 @@ foreach ($videos as $video=>$video_info) {
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega@3.0.10/build/vega.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-lite@2.1.3/build/vega-lite.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vega-embed@3.0.0/build/vega-embed.js"></script>
 	
 	<title>Video Analysis</title>
 
@@ -239,6 +242,9 @@ foreach ($videos as $video=>$video_info) {
 						    		}
 						    		array_push($all_nums, $num_events);
 						    	}
+						    	?>
+						    	<input type=hidden name=view_data value=<?php echo json_encode($all_nums); ?> />
+						    	<?php
 						    	//echo min($all_nums) . ", " . max($all_nums) . "<br/>";
 						    	//var_dump($all_nums);
 						    	$max_num = max($all_nums);
@@ -270,6 +276,7 @@ foreach ($videos as $video=>$video_info) {
 					<?php 
 						echo sizeof($user_data);
 					?>
+				<div id="vis"></div>
 			<?php } else { ?>
 				<div>Choose a video on the left to view stats.</div>
 			<?php } var_dump($user_data); ?>

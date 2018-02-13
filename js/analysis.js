@@ -358,7 +358,8 @@ function initButtons() {
 	var view_list = JSON.parse($('input[name=view_data]').val());
 	var view_data = [];
 	for (var i = 0; i < view_list.length; i++) {
-		view_data.push({"Time": i, "Number of unique views": view_list[i]});
+		var time = (duration / 100) * i; //in seconds
+		view_data.push({"Time": time, "Number of unique views": view_list[i]});
 	}
 
 	// load visualization
@@ -370,7 +371,7 @@ function initButtons() {
 		},
 		"mark": "line",
 		"encoding": {
-			"x": {"field": "Time", "type": "quantitative"},
+			"x": {"field": "Time", "type": "temporal", "timeUnit": "seconds", "axis": {"format": "%H:%M:%S"}},
     		"y": {"field": "Number of unique views", "type": "quantitative"}
 		}
 	};

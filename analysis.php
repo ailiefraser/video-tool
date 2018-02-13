@@ -82,21 +82,21 @@ if (isset($_POST['video'])) {
 
 		// get video info from id
 		//$video_id = $matches[0];
-		$video_info = file_get_contents('http://www.youtube.com/get_video_info?&video_id='.$cur_video);
-		var_dump($video_info); echo "<br/><br/>";
-		parse_str($video_info, $video_info_array);
+		// $video_info = file_get_contents('http://www.youtube.com/get_video_info?&video_id='.$cur_video);
+		// var_dump($video_info); echo "<br/><br/>";
+		// parse_str($video_info, $video_info_array);
 
-		if (isset($video_info_array['caption_tracks'])) {
-		    $tracks = explode(',', $video_info_array['caption_tracks']);
+		// if (isset($video_info_array['caption_tracks'])) {
+		//     $tracks = explode(',', $video_info_array['caption_tracks']);
 
-		    // print info for each track (including url to track content)
-		    foreach ($tracks as $track) {
-		        parse_str($track, $output);
-		        print_r($output);
-		    }
-		} else {
-			echo "aint no caption tracks";
-		}
+		//     // print info for each track (including url to track content)
+		//     foreach ($tracks as $track) {
+		//         parse_str($track, $output);
+		//         print_r($output);
+		//     }
+		// } else {
+		// 	echo "aint no caption tracks";
+		// }
 
 	}
 } else {

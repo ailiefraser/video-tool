@@ -232,7 +232,7 @@ function loadVisualization() {
 	var view_list = JSON.parse($('input[name=view_data]').val());
 	var view_data = [];
 	for (var i = 0; i < view_list.length; i++) {
-		var time = makeTimeString(Math.round((duration / 100) * i)); //in seconds
+		var time = "Tue Jun 30 2015 " + makeTimeString(Math.round((duration / 100) * i)); //in seconds
 		view_data.push({"Time": time, "Number of unique views": view_list[i]});
 	}
 	console.log(view_data);
@@ -246,7 +246,7 @@ function loadVisualization() {
 		},
 		"mark": "line",
 		"encoding": {
-			"x": {"field": "Time", "type": "temporal", "timeUnit": "hoursminutesseconds"},// "axis": {"format": "%H:%M:%S"}},
+			"x": {"field": "Time", "type": "temporal", "timeUnit": "hoursminutesseconds", "axis": {"format": "%H:%M:%S"}},
     		"y": {"field": "Number of unique views", "type": "quantitative"}
 		}
 	};

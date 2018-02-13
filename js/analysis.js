@@ -358,7 +358,7 @@ function initButtons() {
 	var view_list = JSON.parse($('input[name=view_data]').val());
 	var view_data = [];
 	for (var i = 0; i < view_list.length; i++) {
-		view_data.append({"a": i, "b": view_list[i]});
+		view_data.push({"a": i, "b": view_list[i]});
 	}
 
 	// load visualization

@@ -358,7 +358,7 @@ function initButtons() {
 	var view_list = JSON.parse($('input[name=view_data]').val());
 	var view_data = [];
 	for (var i = 0; i < view_list.length; i++) {
-		view_data.push({"a": i, "b": view_list[i]});
+		view_data.push({"Time": i, "Number of unique views": view_list[i]});
 	}
 
 	// load visualization
@@ -367,10 +367,10 @@ function initButtons() {
 		"data": {
 			"values": view_data
 		},
-		"mark": "point",
+		"mark": "line",
 		"encoding": {
-			"x": {"field": "a", "type": "quantitative"},
-    		"y": {"field": "b", "type": "quantitative"}
+			"x": {"field": "Time", "type": "temporal"},
+    		"y": {"field": "Number of unique views", "type": "quantitative"}
 		}
 	};
 

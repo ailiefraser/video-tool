@@ -355,6 +355,8 @@ function initButtons() {
 		}
 	});
 
+	
+
 	// load visualization
 	var vlSpec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",

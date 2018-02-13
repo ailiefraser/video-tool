@@ -82,10 +82,13 @@ button .glyphicon {
     display: none;
 }
 
+#seeker_container {
+    position: relative;
+}
+
 #heatmap_container {
     position: absolute;
     z-index: -100;
-    margin-top: 30px;
     height: 15px;
 }
 

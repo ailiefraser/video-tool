@@ -361,6 +361,7 @@ function initButtons() {
 		var time = (duration / 100) * i; //in seconds
 		view_data.push({"Time": time, "Number of unique views": view_list[i]});
 	}
+	console.log(view_data);
 
 	// load visualization
 	var vlSpec = {

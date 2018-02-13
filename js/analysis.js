@@ -246,7 +246,7 @@ function loadVisualization() {
 		},
 		"mark": "line",
 		"encoding": {
-			"x": {"field": "Time", "type": "temporal", "timeUnit": "seconds", "axis": {"format": "%H:%M:%S"}},
+			"x": {"field": "Time", "type": "temporal", "timeUnit": "seconds"},// "axis": {"format": "%H:%M:%S"}},
     		"y": {"field": "Number of unique views", "type": "quantitative"}
 		}
 	};

@@ -162,6 +162,12 @@ foreach ($videos as $video=>$video_info) {
 
 	<script src="js/analysis.js"></script>
 	<link href="css/style.css" rel="stylesheet">
+	<style media="screen">
+		/* Add space between Vega-Embed links  */
+		.vega-actions a {
+			margin-right: 5px;
+		}
+	</style>
 
 </head>
 <div class="device-xs visible-xs"></div>
@@ -242,9 +248,6 @@ foreach ($videos as $video=>$video_info) {
 						    		}
 						    		array_push($all_nums, $num_events);
 						    	}
-						    	?>
-						    	<input type=hidden name=view_data value=<?php echo json_encode($all_nums); ?> />
-						    	<?php
 						    	//echo min($all_nums) . ", " . max($all_nums) . "<br/>";
 						    	//var_dump($all_nums);
 						    	$max_num = max($all_nums);
@@ -263,6 +266,7 @@ foreach ($videos as $video=>$video_info) {
 							    } 
 							} ?>
 						</div>
+						<input type=hidden name=view_data value=<?php echo json_encode($all_nums); ?> />
 				    </div>
 			  	</div>
 			</div>

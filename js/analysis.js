@@ -241,7 +241,7 @@ function loadVisualization() {
 	var vlSpec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
 		"title": "Views over time",
-		"width": Math.round($("#right_container").width() * 0.75),
+		"width": Math.round($("#right_container").width() * 0.85),
 		"data": {
 			"values": view_data
 		},

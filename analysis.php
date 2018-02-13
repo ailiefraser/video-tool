@@ -270,7 +270,7 @@ foreach ($videos as $video=>$video_info) {
 		<div id="right_container">
 			<h4>Video stats:</h4>
 			<?php if (isset($cur_video)) { ?>
-				<p>Current video: <span id="current_video"><?php echo $cur_video ?></span></p>
+				<span id="current_video"><?php echo $cur_video ?></span>
 				<p>Video title: <?php echo $videos[$cur_video]["title"]?></p>
 				<p>Number of unique views: 
 					<?php 
@@ -279,7 +279,7 @@ foreach ($videos as $video=>$video_info) {
 				<div id="vis"></div>
 			<?php } else { ?>
 				<div>Choose a video on the left to view stats.</div>
-			<?php } var_dump($user_data); ?>
+			<?php } //var_dump($user_data); ?>
 		</div>
 	</div>
 </body>

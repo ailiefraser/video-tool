@@ -233,13 +233,14 @@ function loadVisualization() {
 	var view_data = [];
 	for (var i = 0; i < view_list.length; i++) {
 		var time = "Tue Jun 30 2015 " + makeTimeString(Math.round((duration / 100) * i)); //in seconds
-		view_data.push({"Time": time, "Number of unique views": view_list[i]});
+		view_data.push({"Time": time, "Number of views": view_list[i]});
 	}
 	console.log(view_data);
 
 	// load visualization
 	var vlSpec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+		"title": "Views over time",
 		"width": Math.round($("#right_container").width() * 0.75),
 		"data": {
 			"values": view_data
@@ -247,7 +248,7 @@ function loadVisualization() {
 		"mark": "line",
 		"encoding": {
 			"x": {"field": "Time", "type": "temporal", "timeUnit": "hoursminutesseconds", "axis": {"format": "%H:%M:%S"}},
-    		"y": {"field": "Number of unique views", "type": "quantitative"}
+    		"y": {"field": "Number of views", "type": "quantitative"}
 		}
 	};
 
